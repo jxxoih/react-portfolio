@@ -1,0 +1,132 @@
+.mainContent {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("assets/imgs/mainImg.jpg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.mainContent>img {
+    width: 100vw;
+}
+
+.aboutWrap {
+    width: 100%;
+    display: flex;
+    background-color: #fff;
+    height: 200px;
+    align-items: center;
+}
+
+.aboutTitle {
+    width: 25vw;
+    font-size: 2rem;
+    text-align: center;
+    position: relative;
+    text-decoration: dashed;
+}
+
+.aboutContext {
+    width: 75vw;
+    padding: 10px;
+}
+
+.aboutContextTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 10px 0px;
+}
+
+.aboutContent {}
+
+
+.skillWrap {
+    width: 100%;
+    display: flex;
+    background-color: rgb(231, 231, 231);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.skillTitle {
+    width: 100%;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.skillContent {
+    width: 100%;
+    max-width: 1024px;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.skillContent .skillList {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.skillBox {
+    /* width: 80%; */
+    /* min-width: 200px; */
+    /* max-width: 400px; */
+}
+
+.skillBox > ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(188, 188, 188);
+    border-radius: 20px;
+    /* padding: 10px; */
+}
+
+.skillBox > ul > li {
+    width: 100%;
+    border-radius: 20px;
+    width: 150px;
+    height: 150px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    margin: 10px;
+    background-color: #ccc;
+}
+
+.htmlIcon {
+    background-image: url("assets/imgs/html.png");
+}
+.cssIcon {
+    background-image: url("assets/imgs/css.png");
+}
+.jsIcon {
+    background-image: url("assets/imgs/javascript.png");
+}
+.reactIcon {
+    background-image: url("assets/imgs/react.png");
+}
+
+.iconHover {
+    opacity: 0;
+    height: 100%;
+    width: 100%;
+}
+.iconHover:hover {
+    opacity: 0.5;
+}
+
+.stackTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
