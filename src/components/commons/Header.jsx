@@ -5,6 +5,7 @@ const Header = () => {
         <div className={styles.gnb}>
             <ul>
                 <li>About.</li>
+                <li>Work.</li>
                 <li>Skills.</li>
                 <li>Project.</li>
                 <li>Contact.</li>
