@@ -1,5 +1,4 @@
 .gnb {
-    background-color: red;
     height: 3rem;
     width: 100%;
     max-width: 600px;
@@ -29,6 +28,7 @@
     width: 100%;
     height: 100%;
     cursor: pointer;
+    font-weight: 600;
 }
 
 .gnb>ul>li:hover {
