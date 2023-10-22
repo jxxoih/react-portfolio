@@ -1,4 +1,3 @@
-import Footer from "components/commons/Footer";
 import Header from "components/commons/Header";
 import Main from "components/Main";
 import { useEffect, useState } from "react";
@@ -41,11 +40,8 @@ function App() {
 
   return (
     <>
-
       <Header func={gnbClick} />
       <Main />
-      <Footer />
-
     </>
   );
 }
