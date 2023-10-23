@@ -1,0 +1,39 @@
+.contactWrap {
+    background-color: rgb(236, 236, 236);
+}
+
+.contactTitle {
+    width: 100%;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.contactTitle>p {
+    margin: 0;
+    padding: 32px;
+}
+
+.contactContent {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 0 50px 0;
+}
+
+.emailImg {
+    height: 40px;
+}
+
+.emailText {
+    font-size: 1.3rem;
+    font-weight: 700;
+    padding: 0 10px;
+    color: #595959;
+}
+
+.email {
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 0 20px;
+}

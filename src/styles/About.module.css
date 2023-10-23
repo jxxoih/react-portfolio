@@ -1,0 +1,27 @@
+
+.aboutWrap {
+    width: 100%;
+    display: flex;
+    background-color: rgb(244, 244, 244);
+    height: 200px;
+    align-items: center;
+}
+
+.aboutTitle {
+    width: 25vw;
+    font-size: 2rem;
+    text-align: center;
+    position: relative;
+    text-decoration: dashed;
+}
+
+.aboutContext {
+    width: 75vw;
+    padding: 10px;
+}
+
+.aboutContextTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 10px 0px;
+}

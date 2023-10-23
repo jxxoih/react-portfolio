@@ -5,9 +5,15 @@
     display: flex;
     position: fixed;
     right: 10%;
-    background-color: rgba(202, 202, 202, 0.7);
+    background-color: rgba(25, 25, 25, 0.7);
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
+    color: #e0e0e0;
+    
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none
 }
 
 .gnb>ul {
