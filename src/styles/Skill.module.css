@@ -18,7 +18,13 @@
     max-width: 1024px;
     display: flex;
     justify-content: center;
-    padding: 20px;
+    margin: 20px;
+
+        
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none
 }
 
 .skillContent .skillList {
@@ -76,6 +82,6 @@
 }
 
 .stackTitle {
-    font-size: 1.2rem;
+    font-size: 1.4vw;
     font-weight: 700;
 }
