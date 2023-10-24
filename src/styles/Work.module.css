@@ -3,6 +3,7 @@
     display: flex;
     justify-content: center;
     background-color: rgb(220, 220, 220);
+    padding: 50px 0;
 }
 
 .workTitle {
@@ -11,6 +12,7 @@
 }
 
 .workContext {
+    cursor: default;
     width: 100%;
     max-width: 1024px;
 }

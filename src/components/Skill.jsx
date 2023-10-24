@@ -10,7 +10,7 @@ const Skill = (props) => {
     return (
         <div className={styles.skillWrap + " skills"}>
             <div className={styles.skillTitle}>
-                <p>
+                <p className="wrapTitle">
                     Skills.
                 </p>
             </div>

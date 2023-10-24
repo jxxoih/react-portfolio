@@ -4,7 +4,7 @@ const About = () => {
     return (
         <div className={styles.aboutWrap + " about"}>
             <div className={styles.aboutTitle}>
-                <p>
+                <p className="wrapTitle">
                     About Me.
                 </p>
             </div>

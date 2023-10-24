@@ -5,6 +5,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 50px 0;
 }
 
 .skillTitle {
@@ -34,8 +35,12 @@
 }
 
 .skillBox>ul {
+    width: 15vw;
+    max-width: 150px;
+    min-width: 100px;
+
     margin: 0;
-    padding: 0;
+    padding: 0 10px;
     display: flex;
     flex-direction: column;
     list-style: none;
@@ -47,14 +52,22 @@
 
 .skillBox>ul>li {
     width: 100%;
+    height: 15vw;
+    max-width: 150px;
+    min-width: 100px;
+    max-height: 150px;
+    min-height: 100px;
+
     border-radius: 20px;
-    width: 150px;
-    height: 150px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100%;
-    margin: 10px;
+    margin-top: 10px;
     background-color: #ededed;
+}
+
+.skillBox>ul>li:last-child{
+    margin-bottom: 10px;
 }
 
 .iconHover {
@@ -82,6 +95,6 @@
 }
 
 .stackTitle {
-    font-size: 1.4vw;
+    font-size: 1rem;
     font-weight: 700;
 }

@@ -13,7 +13,7 @@ const Work = (props) => {
         <div className={styles.workWrap + " work"}>
             <div className={styles.workContext}>
                 <div className={styles.workTitle}>
-                    <p>
+                    <p className="wrapTitle">
                         Work.
                     </p>
                 </div>

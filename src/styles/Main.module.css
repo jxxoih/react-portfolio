@@ -4,7 +4,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url("assets/imgs/mainImg.jpg");
+    background-image: url("assets/imgs/mainImg.jpeg");
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
@@ -12,4 +12,12 @@
 
 .mainContent>img {
     width: 100vw;
+}
+
+
+
+.typer {
+    color: #ededed;
+    font-weight: 700;
+    font-size: 5vw;
 }

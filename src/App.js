@@ -13,19 +13,25 @@ function App() {
   ]
 
   const [y, setY] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   const gnbClick = (e) => {
     let targetY = document.querySelector("." + gnbList[e]).getBoundingClientRect().y;
 
+    scrollToY(y + targetY)
+  }
+
+  const scrollToY = (yScroll) => {
     window.scrollTo({
-      top: y + targetY,
+      top: yScroll,
       behavior: 'smooth'
-    })
+    });
   }
 
   const setScrollY = () => {
     let offsetY = window.pageYOffset;
     setY(offsetY);
+
   }
 
   useEffect(() => {
@@ -41,7 +47,7 @@ function App() {
   return (
     <>
       <Header func={gnbClick} />
-      <Main />
+      <Main isMobile={isMobile} />
     </>
   );
 }

@@ -13,9 +13,16 @@
 }
 
 * {
-    font-family: SUITE ,serif;
+    font-family: SUITE, serif;
 }
 
 .searchBox {
     background-color: white;
+}
+
+.wrapTitle {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
 }
