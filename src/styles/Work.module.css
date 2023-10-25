@@ -42,6 +42,7 @@
 }
 
 .workingList>p {
+    line-height: 2rem;
     margin: 10px 0;
     word-break: keep-all;
 }
@@ -79,4 +80,9 @@
 .work {
     font-size: 1rem;
     font-weight: 700;
+}
+.workSkill {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color:#191919;
 }

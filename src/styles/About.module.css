@@ -1,25 +1,53 @@
-
 .aboutWrap {
     width: 100%;
     display: flex;
     background-color: rgb(244, 244, 244);
     height: 200px;
     align-items: center;
+    justify-content: center;
 }
 
 .aboutTitle {
-    width: 25vw;
+    white-space: nowrap;
+    padding: 30px 50px;
     font-size: 2rem;
     text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+.aboutContent {
+    width: 100%;
+    max-width: 1024px;
+    display: flex;
+
 }
 
 .aboutContext {
-    width: 75vw;
-    padding: 10px;
+    width: 100%;
+    padding: 30px;
 }
 
 .aboutContextTitle {
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: 400;
     margin: 10px 0px;
+}
+
+.aboutContextTitle,
+.aboutContexts {
+    word-break: keep-all;
+    white-space: pre-wrap;
+}
+
+
+/* mobile */
+
+.aboutTitleM {
+    white-space: wrap;
+    padding: 30px 50px;
+    font-size: 2rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
 }

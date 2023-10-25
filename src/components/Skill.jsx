@@ -1,12 +1,11 @@
 import * as config from "config";
-import * as data from "data";
 
 import styles from "styles/Skill.module.css";
 
-const skillList = data.SKILL_LIST;
-const skills = data.SKILLS;
-
 const Skill = (props) => {
+    const skillList = props.data.SKILL_LIST;
+    const skills = props.data.SKILLS;
+
     return (
         <div className={styles.skillWrap + " skills"}>
             <div className={styles.skillTitle}>

@@ -18,7 +18,7 @@
     "eject": "react-scripts eject",
     "deploy": "gh-pages -d build"
   },
-  "homepage": "http://jxxo.shop/",
+  "homepage": "https://jxxo.shop/",
   "eslintConfig": {
     "extends": [
       "react-app",

@@ -7,6 +7,8 @@ import Contact from "components/Contact";
 import { useState } from "react";
 import { useEffect } from "react";
 
+import * as data from "data";
+
 const mainText = "개발자 강지호 입니다.";
 
 const Main = (props) => {
@@ -42,9 +44,20 @@ const Main = (props) => {
                 </p>
             </div>
 
-            <About />
-            <Work func={returnUrl} isMobile={props.isMobile} />
-            <Skill func={returnUrl} isMobile={props.isMobile} />
+            <About 
+            isMobile={props.isMobile} 
+            data={data.ABOUT_ME} 
+            />
+            <Work 
+            func={returnUrl}
+             isMobile={props.isMobile}
+             data={data}
+             />
+            <Skill 
+            func={returnUrl} 
+            isMobile={props.isMobile}
+            data={data}
+            />
             <Contact />
 
         </div>

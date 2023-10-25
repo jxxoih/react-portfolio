@@ -16,6 +16,7 @@ function App() {
 
   const [y, setY] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [scroll, setScroll] = useState(false);
 
   const gnbClick = (e) => {
     let targetY = document.querySelector("." + gnbList[e]).getBoundingClientRect().y;
@@ -30,12 +31,6 @@ function App() {
     });
   }
 
-  const setScrollY = () => {
-    let offsetY = window.pageYOffset;
-    setY(offsetY);
-
-  }
-
   useEffect(() => {
     function handleResize() {
       let width = window.innerWidth;
@@ -46,12 +41,24 @@ function App() {
       }
     };
 
+    function topBtn() {
+      let offsetY = window.pageYOffset;
+      setY(offsetY);
+
+      if (offsetY > 20) {
+        setScroll(true);
+      } else {
+        setScroll(false);
+      }
+    }
+
     window.addEventListener('resize', handleResize);
     handleResize();
-    window.addEventListener('scroll', setScrollY);
+    window.addEventListener('scroll', topBtn);
+    topBtn();
 
     return () => {
-      window.removeEventListener('scroll', setScrollY);
+      window.removeEventListener('scroll', topBtn);
       window.removeEventListener('resize', handleResize);
     }
 
@@ -66,6 +73,12 @@ function App() {
         <HeaderMobile func={gnbClick} />
       )}
       <Main isMobile={isMobile} />
+
+      {scroll && (
+        <div className="topBtn" onClick={() => scrollToY(0)} >
+          <img src={config.IMG_PATH + "topBtn.svg"} alt="TOP" />
+        </div>
+      )}
     </>
   );
 }

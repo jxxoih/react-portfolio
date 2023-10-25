@@ -1,11 +1,12 @@
 .gnb {
+    z-index: 999;
     height: 3rem;
     width: 100%;
     max-width: 600px;
     display: flex;
     position: fixed;
     right: 10%;
-    background-color: rgba(25, 25, 25, 0.7);
+    background-color: rgba(25, 25, 25, 0.8);
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     color: #e0e0e0;
@@ -52,6 +53,7 @@
 
 
 .gnbMobile {
+    z-index: 999;
     background-color: #fff;
     opacity: 0.9;
     position: fixed;

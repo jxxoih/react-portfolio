@@ -6,24 +6,35 @@ export const WORK_LIST = [
                 , work: "기능개발 및 유지보수(프론트, 백엔드)"
                 , datetime: "2022-04-01 ~ 2022-12-31"
                 , portpolio: ""
+                , skill: "HTML, CSS, JavaScript / PHP"
             }
             , {
                 content: "키키 관리자페이지"
                 , work: "기능개발 및 유지보수(프론트, 백엔드)"
                 , datetime: "2022-04-01 ~ 2022-12-31"
                 , portpolio: ""
+                , skill: "HTML, CSS, JavaScript / PHP"
             }
             , {
                 content: "키키 포스프로그램(POS)"
                 , work: "POS 프로그램 유지보수 및 REST API를 이용해 외부 배달대행사 API 연동(프론트, 백엔드)"
                 , datetime: "2022-05-01 ~ 2022-12-31"
                 , portpolio: ""
+                , skill: "HTML, JavaScript / PHP"
+            }
+            , {
+                content: "키키 사이트 및 웹뷰"
+                , work: "사이트, 웹뷰 개발 및 유지보수(프론트, 백엔드)"
+                , datetime: "2022-06-01 ~ 2022-12-31"
+                , portpolio: ""
+                , skill: "React / PHP"
             }
             , {
                 content: "키키 채팅서비스 웹뷰"
                 , work: "키키 앱에 들어갈 채팅서비스 기능 일부 웹뷰 UI 및 로직 구현"
                 , datetime: "2022-10-01 ~ 2022-11-01"
                 , portpolio: ""
+                , skill: "HTML, CSS, JavaScript"
             }
         ]
         , workDT: "2022-04 ~ 2023-01"
@@ -36,18 +47,21 @@ export const WORK_LIST = [
                 , work: "쇼핑몰 개발(프론트, 백엔드)"
                 , datetime: "2023-01-02 ~ 2023-06-30"
                 , portpolio: ""
+                , skill: "Thymeleaf / Spring"
             }
             , {
                 content: "(주)대화공업 홈페이지"
                 , work: "디자인 외 모든 작업(프론트엔드)"
                 , datetime: "2023-01-02 ~ 2023-02-01"
-                , portpolio: "http://devziho.shop"
+                , portpolio: "https://devziho.shop"
+                , skill: "React"
             }
             , {
                 content: "크레텍 사내메신저"
                 , work: "일부 UI 작업 참여(프론트엔드)"
                 , datetime: "2023-05-01 ~ 2023-06-01"
                 , portpolio: ""
+                , skill: "HTML, CSS, JavaScript"
             }
         ]
         , workDT: "2023-01 ~ 2023-07"
@@ -178,3 +192,9 @@ export const SKILLS = [
     "vc",
     "communication"
 ]
+
+
+export const ABOUT_ME = {
+    title: "풀스택 개발자가 목표인 강지호 입니다.",
+    context: ""
+}

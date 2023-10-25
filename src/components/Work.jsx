@@ -1,14 +1,9 @@
-import * as data from "data";
-
 import styles from "styles/Work.module.css";
 
-
-const workList = data.WORK_LIST;
-
-const company = data.COMPANY;
-
-
 const Work = (props) => {
+    const workList = props.data.WORK_LIST;
+
+    const company = props.data.COMPANY;
     return (
         <div className={styles.workWrap + " work"}>
             <div className={styles.workContext}>
@@ -47,6 +42,9 @@ const Work = (props) => {
                                             <br />
                                         )}
                                         {work.datetime}
+                                    </p>
+                                    <p className={styles.workSkill}>
+                                        {work.skill}
                                     </p>
                                 </div>
                             ))}
