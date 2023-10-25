@@ -9,11 +9,11 @@
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     color: #e0e0e0;
-    
-    -webkit-user-select:none;
-    -moz-user-select:none;
-    -ms-user-select:none;
-    user-select:none
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
 }
 
 .gnb>ul {
@@ -47,4 +47,42 @@
 
 .gnb>ul>li:last-child {
     border-bottom-right-radius: 15px;
+}
+
+
+
+.gnbMobile {
+    background-color: #fff;
+    opacity: 0.9;
+    position: fixed;
+    width: 100vw;
+    height: 50px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+    display: flex;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+.gnbMobile>ul {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+}
+
+.gnbMobile>ul>li {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+}
+
+.gnbMobile>ul>li:hover {
+    background-color: rgba(202, 202, 202, 0.3)
 }

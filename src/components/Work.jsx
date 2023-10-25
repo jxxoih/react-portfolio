@@ -19,7 +19,7 @@ const Work = (props) => {
                 </div>
                 <div className={styles.workContent}>
                     {workList.map((item, idx) => (
-                        <div className={styles.wokrs} key={idx}>
+                        <div className={props.isMobile ? styles.worksMobile : styles.wokrs} key={idx}>
                             <div className={styles.companyNm}>
                                 <p>
                                     {item.companyNm}
@@ -40,7 +40,12 @@ const Work = (props) => {
                                     </p>
                                     <p className={styles.work}>
                                         {work.work}
-                                        <span className={styles.bar}>|</span>
+                                        {!props.isMobile && (
+                                            <span className={styles.bar}>|</span>
+                                        )}
+                                        {props.isMobile && (
+                                            <br />
+                                        )}
                                         {work.datetime}
                                     </p>
                                 </div>

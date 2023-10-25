@@ -21,6 +21,10 @@
     padding: 30px 50px;
 }
 
+.worksMobile {
+    padding: 20px;
+}
+
 .bar {
     padding: 0 10px;
     color: #7d7d7d;
@@ -51,13 +55,25 @@
 .setPortpolio {
     cursor: pointer;
     position: relative;
+
+
 }
+.setPortpolio:hover {
+    color: #0645AD;
+    text-decoration-line: underline;
+    text-decoration-style: dashed;
+    text-decoration-thickness: 1px;
+    text-underline-position: under;
+}
+
 .setPortpolio::after {
     /* 여기 */
-    content: "Click here";
+    content: "Click";
     font-weight: 400;
-    font-size: 0.75rem;
-    position: absolute;
+    font-size: 0.5rem;
+    position: relative;
+    left: 5px;
+    color: #888;
 }
 
 .work {

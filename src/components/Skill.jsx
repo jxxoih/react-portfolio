@@ -14,11 +14,11 @@ const Skill = (props) => {
                     Skills.
                 </p>
             </div>
-            <div className={styles.skillContent}>
+            <div className={props.isMobile ? styles.skillMobileContent : styles.skillContent}>
                 {skillList.map((item, idx) => (
                     <div className={styles.skillList} key={idx}>
-                        <div className={styles.skillBox}>
-                            <p className={styles.stackTitle}>{item.title}</p>
+                        <div className={props.isMobile ? styles.skillMobileBox : styles.skillBox}>
+                            <p className={props.isMobile ? styles.stackTitleMobile : styles.stackTitle}>{item.title}</p>
                             <ul>
                                 {item[skills[idx]].map(skill => (
                                     <li

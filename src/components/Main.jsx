@@ -25,16 +25,14 @@ const Main = (props) => {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setMainTitle(mainTitle + mainText[count]); 
-            setCount(count + 1); 
+            setMainTitle(mainTitle + mainText[count]);
+            setCount(count + 1);
         }, 150);
-        if (count === mainText.length) {  // count를 따로 두지 않고 mainTitle.length 체크도 가능
-            clearInterval(interval); 
+        if (count === mainText.length) {
+            clearInterval(interval);
         }
-        return () => clearInterval(interval); // 언마운트시 setInterval을 해제합니다
+        return () => clearInterval(interval);
     });
-
-    console.log(props);
 
     return (
         <div>
@@ -45,14 +43,10 @@ const Main = (props) => {
             </div>
 
             <About />
-            <Work func={returnUrl} />
-            <Skill func={returnUrl} />
+            <Work func={returnUrl} isMobile={props.isMobile} />
+            <Skill func={returnUrl} isMobile={props.isMobile} />
             <Contact />
 
-
-        {/* 
-        work : 작업내용 모바일 PC class이름 다르게 하거나 컴포넌트 하나 만들어야됨
-        */}
         </div>
     );
 }
