@@ -44,19 +44,19 @@ const Main = (props) => {
                 </p>
             </div>
 
-            <About 
-            isMobile={props.isMobile} 
-            data={data.ABOUT_ME} 
+            <About
+                isMobile={props.isMobile}
+                data={data.ABOUT_ME}
             />
-            <Work 
-            func={returnUrl}
-             isMobile={props.isMobile}
-             data={data}
-             />
-            <Skill 
-            func={returnUrl} 
-            isMobile={props.isMobile}
-            data={data}
+            <Work
+                func={returnUrl}
+                isMobile={props.isMobile}
+                data={data}
+            />
+            <Skill
+                func={returnUrl}
+                isMobile={props.isMobile}
+                data={data}
             />
             <Contact />
 

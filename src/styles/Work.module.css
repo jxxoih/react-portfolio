@@ -32,7 +32,7 @@
 
 .companyNm {
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: 600;
     color: rgb(46, 26, 26);
 }
 
@@ -80,7 +80,7 @@
 
 .work {
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .workSkill {
@@ -92,7 +92,7 @@
 
 .workWrap:hover .workSkill {
     animation-name: motionWork;
-    animation-duration: 1s;
+    animation-duration: 0.5s;
     animation-timing-function: ease;
     animation-iteration-count: infinite;
     animation-direction: alternate;
@@ -102,10 +102,12 @@
 
 @keyframes motionWork {
     0% {
-        font-size: 1.2rem;
+        bottom: -1px;
+        /* font-size: 1.2rem; */
     }
 
     100% {
-        font-size: 1.23rem;
+        bottom: 1px;
+        /* font-size: 1.23rem; */
     }
 }
