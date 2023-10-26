@@ -9,7 +9,7 @@ import { useEffect } from "react";
 
 import * as data from "data";
 
-const mainText = "개발자 강지호 입니다.";
+const mainText = "개발자 강지호입니다.";
 
 const Main = (props) => {
     const [mainTitle, setMainTitle] = useState("");

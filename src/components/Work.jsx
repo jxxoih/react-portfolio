@@ -27,8 +27,8 @@ const Work = (props) => {
                                 <div className={styles.workingList} key={idx2}>
                                     <p className={styles.projectTitle}>
                                         <span
-                                            className={!!work.portpolio ? styles.setPortpolio : ""}
-                                            onClick={(e) => props.func(work.portpolio, e)}
+                                            className={!!work.portfolio ? styles.setPortfolio : ""}
+                                            onClick={(e) => props.func(work.portfolio, e)}
                                         >
                                             {work.content}
                                         </span>

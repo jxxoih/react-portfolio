@@ -2,7 +2,8 @@
     width: 100%;
     display: flex;
     background-color: rgb(244, 244, 244);
-    height: 200px;
+    height: auto;
+    min-height: 200px;
     align-items: center;
     justify-content: center;
 }
@@ -38,6 +39,10 @@
 .aboutContexts {
     word-break: keep-all;
     white-space: pre-wrap;
+}
+
+.aboutContexts {
+    line-height: 1.6rem;
 }
 
 

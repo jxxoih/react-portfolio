@@ -53,13 +53,14 @@
     padding: 5px 0;
 }
 
-.setPortpolio {
+.setPortfolio {
     cursor: pointer;
     position: relative;
 
 
 }
-.setPortpolio:hover {
+
+.setPortfolio:hover {
     color: #0645AD;
     text-decoration-line: underline;
     text-decoration-style: dashed;
@@ -67,7 +68,7 @@
     text-underline-position: under;
 }
 
-.setPortpolio::after {
+.setPortfolio::after {
     /* 여기 */
     content: "Click";
     font-weight: 400;
@@ -81,8 +82,30 @@
     font-size: 1rem;
     font-weight: 700;
 }
+
 .workSkill {
     font-size: 1.2rem;
-    font-weight: 700;
-    color:#191919;
+    color: #060753;
+
+    position: relative;
+}
+
+.workWrap:hover .workSkill {
+    animation-name: motionWork;
+    animation-duration: 1s;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-fill-mode: backwards;
+}
+
+
+@keyframes motionWork {
+    0% {
+        font-size: 1.2rem;
+    }
+
+    100% {
+        font-size: 1.23rem;
+    }
 }
