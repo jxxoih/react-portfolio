@@ -1,5 +1,4 @@
-.mainContent,
-.mainContentM {
+.mainContent {
     width: 100%;
     height: 100vh;
     display: flex;
@@ -13,20 +12,6 @@
     /* transform: translateZ(0); */
     /* will-change: transform; */
 }
-
-/* .mainContent {
-    background-image: url("assets/imgs/mainImg.jpeg");
-}
-
-.mainContentM {
-    background-image: url("assets/imgs/mainImgM.jpg");
-} */
-
-.mainContent>img {
-    width: 100vw;
-}
-
-
 
 .typer {
     color: #ededed;

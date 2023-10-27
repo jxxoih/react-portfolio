@@ -69,7 +69,6 @@
 }
 
 .setPortfolio::after {
-    /* 여기 */
     content: "Click";
     font-weight: 400;
     font-size: 0.5rem;
@@ -92,7 +91,7 @@
 
 .workWrap:hover .workSkill {
     animation-name: motionWork;
-    animation-duration: 0.5s;
+    animation-duration: 0.8s;
     animation-timing-function: ease;
     animation-iteration-count: infinite;
     animation-direction: alternate;
@@ -102,12 +101,15 @@
 
 @keyframes motionWork {
     0% {
-        bottom: -1px;
+        /* bottom: -1px; */
         /* font-size: 1.2rem; */
+        opacity: 1;
+        font-weight: 600;
     }
-
+    
     100% {
-        bottom: 1px;
-        /* font-size: 1.23rem; */
+        color: #3d3d3d;
+        opacity: 0.6;
+        font-weight: 400;
     }
 }
