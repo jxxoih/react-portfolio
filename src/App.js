@@ -32,7 +32,7 @@ function App() {
   }
 
   useEffect(() => {
-    console.log("ver1");
+    console.log("ver2");
 
     function handleResize() {
       let width = window.innerWidth;
