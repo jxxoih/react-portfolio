@@ -31,10 +31,10 @@ export const WORK_LIST = [
             }
             , {
                 content: "키키 채팅서비스 웹뷰"
-                , work: "키키 앱에 들어갈 채팅서비스 기능 일부 웹뷰 UI 및 로직 구현"
+                , work: "키키 앱에 들어갈 채팅서비스 기능 일부 웹뷰 UI 및 로직 구현(프론트, 백엔드)"
                 , datetime: "2022-10-01 ~ 2022-11-01"
                 , portfolio: ""
-                , skill: "HTML, CSS, JavaScript"
+                , skill: "HTML, CSS, JavaScript / Node.js"
             }
         ]
         , workDT: "2022-04 ~ 2023-01"
@@ -58,10 +58,10 @@ export const WORK_LIST = [
             }
             , {
                 content: "사내메신저 프로그램"
-                , work: "일부 UI 작업 참여(프론트엔드)"
+                , work: "일부 UI 작업 참여(프론트, 백엔드)"
                 , datetime: "2023-05-01 ~ 2023-06-01"
                 , portfolio: ""
-                , skill: "HTML, CSS, JavaScript"
+                , skill: "HTML, CSS, JavaScript / Node.js"
             }
         ]
         , workDT: "2023-01 ~ 2023-07"

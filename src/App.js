@@ -32,6 +32,8 @@ function App() {
   }
 
   useEffect(() => {
+    console.log("ver1");
+
     function handleResize() {
       let width = window.innerWidth;
       if (width <= config.MOBILE_PX) {

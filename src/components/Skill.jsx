@@ -1,10 +1,20 @@
-import * as config from "config";
-
 import styles from "styles/Skill.module.css";
 
+import { useState } from "react";
+
+import * as config from "config";
+import * as appUtill from "utills/appUtill";
+import { useEffect } from "react";
+
 const Skill = (props) => {
+    const [skillResult, setSkillResult] = useState([]);
+
     const skillList = props.data.SKILL_LIST;
     const skills = props.data.SKILLS;
+
+    useEffect(() => {
+        appUtill.resolveData(config.SKILL_ACTION).then((resolvedData) => setSkillResult(resolvedData));
+    }, []);
 
     return (
         <div className={styles.skillWrap + " skills"}>
