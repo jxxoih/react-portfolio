@@ -46,7 +46,6 @@ const Main = (props) => {
 
             <About
                 isMobile={props.isMobile}
-                data={data.ABOUT_ME}
             />
             <Work
                 func={returnUrl}
@@ -56,7 +55,6 @@ const Main = (props) => {
             <Skill
                 func={returnUrl}
                 isMobile={props.isMobile}
-                data={data}
             />
             <Contact />
 

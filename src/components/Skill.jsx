@@ -10,9 +10,6 @@ const Skill = (props) => {
     const [result, setResult] = useState([]);
     const [fieldResult, setFieldResult] = useState([]);
 
-    const skillList = props.data.SKILL_LIST;
-    const skills = props.data.SKILLS;
-
     useEffect(() => {
         appUtill.resolveData(config.SKILL_ACTION).then((resolvedData) => setResult(resolvedData));
         appUtill.resolveData(config.SKILL_FIELD_ACTION).then((resolvedData) => setFieldResult(resolvedData));
@@ -34,16 +31,18 @@ const Skill = (props) => {
                                 <ul>
                                     {!!result &&
                                         result.map((data) => (
-                                            data.sf_id == field.sf_id && 
+                                            data.sf_id == field.sf_id &&
                                             <li
                                                 style={{ backgroundImage: `url(${config.IMG_PATH + data.s_img})` }}
                                                 key={data.s_id}
-                                                className={!!data?.url ? styles.setUrl : ""}
-                                                onClick={(e) => props.func("", e)}
+                                                className={!!data?.s_id === 12 ? styles.setUrl : ""}
+                                                onClick={data.s_id === 12 ? (e) => props.func(`https://github.com/${data.p_github}`, e) : console.log()}
                                             >
                                                 <div className={styles.iconHover}>
                                                     {
-                                                        data.s_name
+                                                        data.s_id === 12 ?
+                                                            data.p_github
+                                                            : data.s_name
                                                     }
                                                 </div>
                                             </li>
@@ -55,27 +54,6 @@ const Skill = (props) => {
                     ))
 
                 }
-                {/* {skillList.map((item, idx) => (
-                    <div className={styles.skillList} key={idx}>
-                        <div className={props.isMobile ? styles.skillMobileBox : styles.skillBox}>
-                            <p className={props.isMobile ? styles.stackTitleMobile : styles.stackTitle}>{item.title}</p>
-                            <ul>
-                                {item[skills[idx]].map(skill => (
-                                    <li
-                                        style={{ backgroundImage: `url(${config.IMG_PATH + skill.img})` }}
-                                        key={skill.name}
-                                        className={!!skill.url ? styles.setUrl : ""}
-                                        onClick={(e) => props.func(skill.url, e)}
-                                    >
-                                        <div className={styles.iconHover}>
-                                            {skill.description}
-                                        </div>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    </div>
-                ))} */}
             </div>
         </div>
     );

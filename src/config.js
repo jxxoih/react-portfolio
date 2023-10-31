@@ -1,4 +1,5 @@
 export const IMG_PATH = process.env.PUBLIC_URL + "/img/";
+export const GITHUB_PATH = "https://github.com/";
 
 const USE_LOCATION = window.location.href;
 
@@ -13,3 +14,6 @@ export const ABOUT_ACTION = "getAbout";
 export const WORK_ACTION = "getWork";
 export const SKILL_ACTION = "getSkill";
 export const SKILL_FIELD_ACTION = "getSkillField";
+export const GET_COMPANY_ACTION = "getCompany";
+export const GET_PROJECT_ACTION = "getProject";
+export const GET_PROJECT_SKILL_ACTION = "getProjectSkills";
