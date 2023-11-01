@@ -30,8 +30,8 @@
 
 .skillContent .skillList {
     width: 100%;
-    display: flex;
-    justify-content: center;
+    /* display: flex;
+    justify-content: center; */
 }
 
 .skillBox>ul {
@@ -117,14 +117,21 @@
     user-select: none;
 }
 
+.skillMobileBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .skillMobileBox>ul {
     padding: 0;
     width: 100%;
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    
 }
 
 .skillMobileBox>ul>li {

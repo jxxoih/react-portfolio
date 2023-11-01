@@ -4,7 +4,6 @@ import * as config from "config";
 // node 서버 통신 API 모듈
 export const reqAPI = async (action) => {
     const reqPath = config.API_PATH;
-    console.log("reqPath", reqPath);
 
     const data = {
         params: {
@@ -19,7 +18,6 @@ export const reqAPI = async (action) => {
 }
 
 export const resolveData = (action) => {
-    console.log("server req?");
     return new Promise((resolve, reject) => {
         const data = reqAPI(action);
         resolve(data);
