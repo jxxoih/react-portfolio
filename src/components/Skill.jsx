@@ -26,8 +26,8 @@ const Skill = (props) => {
                 {!!fieldResult &&
                     fieldResult.map((field, fidx) => (
                         <div className={styles.skillList} key={fidx}>
-                            <p className={props.isMobile ? styles.stackTitleMobile : styles.stackTitle}>{field.sf_name}</p>
                             <div className={props.isMobile ? styles.skillMobileBox : styles.skillBox}>
+                                <p className={props.isMobile ? styles.stackTitleMobile : styles.stackTitle}>{field.sf_name}</p>
                                 <ul>
                                     {!!result &&
                                         result.map((data) => (

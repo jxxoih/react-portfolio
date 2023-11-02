@@ -30,8 +30,8 @@
 
 .skillContent .skillList {
     width: 100%;
-    /* display: flex;
-    justify-content: center; */
+    display: flex;
+    justify-content: center;
 }
 
 .skillBox>ul {
@@ -92,6 +92,7 @@
 
 .iconHover:hover {
     opacity: 0.7;
+    z-index: 99;
 }
 
 .stackTitle,
@@ -117,11 +118,11 @@
     user-select: none;
 }
 
-.skillMobileBox {
+/* .skillMobileBox {
     display: flex;
     align-items: center;
     justify-content: center;
-}
+} */
 
 .skillMobileBox>ul {
     padding: 0;

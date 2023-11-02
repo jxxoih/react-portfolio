@@ -55,7 +55,7 @@
 
 .setPortfolio {
     cursor: pointer;
-    position: relative;
+    /* position: relative; */
 
 
 }
@@ -85,8 +85,7 @@
 .workSkill {
     font-size: 1.2rem;
     color: #060753;
-
-    position: relative;
+    /* position: relative; */
 }
 
 .workWrap:hover .workSkill {

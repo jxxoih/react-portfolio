@@ -1,17 +1,7 @@
 import styles from "styles/About.module.css";
 
-import * as appUtill from "utills/appUtill";
-import * as config from "config";
-import { useState } from "react";
-import { useEffect } from "react";
-
 const About = (props) => {
-    const [result, setResult] = useState([]);
-
-    useEffect(() => {
-        appUtill.resolveData(config.ABOUT_ACTION).then((resolvedData) => setResult(resolvedData));
-    }, []);
-
+    const result = props.data;
 
     return (
         <div className={styles.aboutWrap + " about"}>

@@ -7,6 +7,9 @@ import Contact from "components/Contact";
 import { useState } from "react";
 import { useEffect } from "react";
 
+import * as appUtill from "utills/appUtill";
+import * as config from "config";
+
 import * as data from "data";
 
 const mainText = "개발자 강지호입니다.";
@@ -14,6 +17,7 @@ const mainText = "개발자 강지호입니다.";
 const Main = (props) => {
     const [mainTitle, setMainTitle] = useState("");
     const [count, setCount] = useState(0);
+    const [aboutData, setAboutData] = useState([]);
 
     const returnUrl = (url, e) => {
         if (url) {
@@ -36,6 +40,10 @@ const Main = (props) => {
         return () => clearInterval(interval);
     });
 
+    useEffect(() => {
+        appUtill.resolveData(config.ABOUT_ACTION).then((resolvedData) => setAboutData(resolvedData));
+    }, [])
+
     return (
         <div>
             <div className={styles.mainContent + " main"}>
@@ -46,11 +54,11 @@ const Main = (props) => {
 
             <About
                 isMobile={props.isMobile}
+                data={aboutData}
             />
             <Work
                 func={returnUrl}
                 isMobile={props.isMobile}
-                data={data}
             />
             <Skill
                 func={returnUrl}

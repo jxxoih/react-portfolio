@@ -15,7 +15,7 @@
 * {
     font-family: SUITE, serif;
 
-    -webkit-tap-highlight-color:transparent;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .searchBox {
@@ -37,16 +37,17 @@
     width: 30px;
     height: 70px;
 
-    -webkit-user-select:none;
-    -moz-user-select:none;
-    -ms-user-select:none;
-    user-select:none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
-.topBtn>img{
-    -webkit-user-select:none;
-    -moz-user-select:none;
-    -ms-user-select:none;
-    user-select:none;
+
+.topBtn>img {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     -khtml-user-select: none;
     -o-user-select: none;
     -webkit-user-drag: none;
@@ -58,6 +59,7 @@
     position: relative;
     bottom: 0;
 }
+
 .topBtn>img:hover {
     animation: motion 0.5s linear 0s infinite alternate;
 }
