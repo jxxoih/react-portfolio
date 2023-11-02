@@ -6,7 +6,7 @@ import styles from "styles/Contact.module.css";
 
 const emailImg = config.IMG_PATH + "email.png";
 
-const Contact = () => {
+const Contact = (props) => {
     return (
         <div className={styles.contactWrap + " contact"}>
             <div className={styles.contactTitle}>
@@ -18,7 +18,7 @@ const Contact = () => {
                 <img src={emailImg} alt="email-img" className={styles.emailImg} />
                 <p className={styles.emailText}>Email.</p>
                 <p className={styles.email}>
-                    jxxo.ih@gmail.com
+                    {props.email}
                 </p>
             </div>
         </div>

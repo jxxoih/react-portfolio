@@ -1,19 +1,9 @@
 import styles from "styles/Skill.module.css";
 
-import { useState } from "react";
-
 import * as config from "config";
-import * as appUtill from "utills/appUtill";
-import { useEffect } from "react";
 
 const Skill = (props) => {
-    const [result, setResult] = useState([]);
-    const [fieldResult, setFieldResult] = useState([]);
-
-    useEffect(() => {
-        appUtill.resolveData(config.SKILL_ACTION).then((resolvedData) => setResult(resolvedData));
-        appUtill.resolveData(config.SKILL_FIELD_ACTION).then((resolvedData) => setFieldResult(resolvedData));
-    }, []);
+    const { fieldResult, skillData } = props.skillData;
 
     return (
         <div className={styles.skillWrap + " skills"}>
@@ -29,8 +19,8 @@ const Skill = (props) => {
                             <div className={props.isMobile ? styles.skillMobileBox : styles.skillBox}>
                                 <p className={props.isMobile ? styles.stackTitleMobile : styles.stackTitle}>{field.sf_name}</p>
                                 <ul>
-                                    {!!result &&
-                                        result.map((data) => (
+                                    {!!skillData &&
+                                        skillData.map((data) => (
                                             data.sf_id == field.sf_id &&
                                             <li
                                                 style={{ backgroundImage: `url(${config.IMG_PATH + data.s_img})` }}
@@ -52,7 +42,6 @@ const Skill = (props) => {
                             </div>
                         </div>
                     ))
-
                 }
             </div>
         </div>

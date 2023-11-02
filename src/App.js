@@ -1,26 +1,29 @@
 import Header from "components/commons/Header";
 import HeaderMobile from "components/commons/HeaderMobile";
 import Main from "components/Main";
-import * as config from "config";
 import { useEffect, useState } from "react";
 
 
 import "styles/common.css";
 
+import * as config from "config";
+import * as appUtill from "utills/appUtill";
+
 function App() {
-  const gnbList = [
-    "about",
-    "work",
-    "skills",
-    "contact"
-  ]
+  const [aboutData, setAboutData] = useState([]);
+  const [company, setCompany] = useState([]);
+  const [project, setProject] = useState([]);
+  const [projectSkill, setProjectSkill] = useState([]);
+  const [skillData, setSkillData] = useState([]);
+  const [fieldResult, setFieldResult] = useState([]);
+
 
   const [y, setY] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [scroll, setScroll] = useState(false);
 
   const gnbClick = (e) => {
-    let targetY = document.querySelector("." + gnbList[e]).getBoundingClientRect().y;
+    let targetY = document.querySelector("." + config.GNB_LIST[e]).getBoundingClientRect().y;
 
     scrollToY(y + targetY)
   }
@@ -32,8 +35,20 @@ function App() {
     });
   }
 
+  const reqData = () => {
+    appUtill.resolveData(config.ABOUT_ACTION).then((resolvedData) => setAboutData(resolvedData));
+    appUtill.resolveData(config.GET_COMPANY_ACTION).then((resolvedData) => setCompany(resolvedData));
+    appUtill.resolveData(config.GET_PROJECT_ACTION).then((resolvedData) => setProject(resolvedData));
+    appUtill.resolveData(config.GET_PROJECT_SKILL_ACTION).then((resolvedData) => setProjectSkill(resolvedData));
+    appUtill.resolveData(config.SKILL_ACTION).then((resolvedData) => setSkillData(resolvedData));
+    appUtill.resolveData(config.SKILL_FIELD_ACTION).then((resolvedData) => setFieldResult(resolvedData));
+  }
+
   useEffect(() => {
-    console.log("ver3");
+    // getData
+    reqData();
+
+
 
     function handleResize() {
       let width = window.innerWidth;
@@ -75,7 +90,13 @@ function App() {
       {isMobile && (
         <HeaderMobile func={gnbClick} />
       )}
-      <Main isMobile={isMobile} />
+
+      <Main
+        isMobile={isMobile}
+        aboutData={aboutData}
+        workData={{ company, project, projectSkill }}
+        skillData={{ skillData, fieldResult }}
+      />
 
       {scroll && (
         <div className="topBtn" onClick={() => scrollToY(0)} >

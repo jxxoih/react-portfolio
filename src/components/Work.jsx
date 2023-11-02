@@ -1,21 +1,9 @@
 import styles from "styles/Work.module.css";
 
-import * as config from "config";
-import * as appUtill from "utills/appUtill";
-import { useState } from "react";
-import { useEffect } from "react";
-
 const Work = (props) => {
-    const [company, setCompany] = useState([]);
-    const [project, setProject] = useState([]);
-    const [projectSkill, setProjectSkill] = useState([]);
-
-    useEffect(() => {
-        appUtill.resolveData(config.GET_COMPANY_ACTION).then((resolvedData) => setCompany(resolvedData));
-        appUtill.resolveData(config.GET_PROJECT_ACTION).then((resolvedData) => setProject(resolvedData));
-        appUtill.resolveData(config.GET_PROJECT_SKILL_ACTION).then((resolvedData) => setProjectSkill(resolvedData));
-    }, []);
-
+    const company = props.companyData;
+    const project = props.projectData;
+    const projectSkill = props.projectSkillData;
 
     return (
         <div className={styles.workWrap + " work"}>

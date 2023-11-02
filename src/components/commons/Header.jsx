@@ -9,7 +9,7 @@ const Header = (props) => {
                 <li onClick={() => props.func(1)}>Work.</li>
                 <li onClick={() => props.func(2)}>Skills.</li>
                 <li onClick={() => props.func(3)}>Contact.</li>
-                <li onClick={() => props.modalF(true)}>Edit.</li>
+                {/* <li onClick={() => props.modalF(true)}>Edit.</li> */}
             </ul>
         </div>
     );
