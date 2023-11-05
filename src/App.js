@@ -2,14 +2,19 @@ import Header from "components/commons/Header";
 import HeaderMobile from "components/commons/HeaderMobile";
 import Main from "components/Main";
 import { useEffect, useState } from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
 
 
 import "styles/common.css";
+import "styles/admin.css";
 
 import * as config from "config";
 import * as appUtill from "utills/appUtill";
+import Admin from "components/admin/Admin";
 
 function App() {
+  const navigate = useNavigate();
+
   const [aboutData, setAboutData] = useState([]);
   const [company, setCompany] = useState([]);
   const [project, setProject] = useState([]);
@@ -17,10 +22,22 @@ function App() {
   const [skillData, setSkillData] = useState([]);
   const [fieldResult, setFieldResult] = useState([]);
 
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [adminCheck, setAdminCheck] = useState(false);
+  const [password, setPassword] = useState("");
+  const [admPage, setAdmPage] = useState(false);
+
 
   const [y, setY] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [scroll, setScroll] = useState(false);
+
+  const setAdmin = (arg) => {
+    setAdminCheck(arg);
+    setAdmPage(arg);
+    setPassword("");
+    navigate("/");
+  }
 
   const gnbClick = (e) => {
     let targetY = document.querySelector("." + config.GNB_LIST[e]).getBoundingClientRect().y;
@@ -47,7 +64,6 @@ function App() {
   useEffect(() => {
     // getData
     reqData();
-
 
 
     function handleResize() {
@@ -82,21 +98,87 @@ function App() {
 
   }, [])
 
+  useEffect(() => {
+    passwordCheck();
+  }, [adminCheck, password]);
+
+  const passwordCheck = () => {
+    !!adminCheck &&
+      window.addEventListener("keydown", (e) => {
+        if (e.keyCode === 13) {
+          if (password === config.ADMIN_PASSWORD) {
+            setAdminCheck(true);
+            setAdmPage(true);
+            setIsAdmin(true);
+            navigate("/admin")
+            e.preventDefault();
+          } else {
+            // 비번틀리면 관리자모드 해제
+            setAdminCheck(false);
+            setAdmPage(false);
+            navigate("/");
+            e.preventDefault();
+          }
+        } else {
+          setPassword(password + e.key);
+        }
+      })
+  }
+
   return (
     <>
       {!isMobile && (
-        <Header func={gnbClick} />
+        <Header
+          func={gnbClick}
+          setAdmin={setAdmin}
+          isAdmin={isAdmin}
+          admPage={admPage}
+        />
       )}
       {isMobile && (
         <HeaderMobile func={gnbClick} />
       )}
+      <Routes>
+        <Route
+          path="/admin"
+          element={
+            <Admin
+              isAdmin={isAdmin}
+              password={password}
+            />
+          }
+        >
+          {/* {admPage && adminCheck && (
+          <Admin
+            isAdmin={isAdmin}
+            password={password}
+          />
+          )} */}
+        </Route>
+        <Route
+          path="/"
+          element={
+            <Main
+              adminCheck={adminCheck}
+              isMobile={isMobile}
+              aboutData={aboutData}
+              workData={{ company, project, projectSkill }}
+              skillData={{ skillData, fieldResult }}
+            />
+          }
+        >
+          {/* {!admPage && !adminCheck && (
+        <Main
+          adminCheck={adminCheck}
+          isMobile={isMobile}
+          aboutData={aboutData}
+          workData={{ company, project, projectSkill }}
+          skillData={{ skillData, fieldResult }}
+        />
+        )} */}
+        </Route>
+      </Routes>
 
-      <Main
-        isMobile={isMobile}
-        aboutData={aboutData}
-        workData={{ company, project, projectSkill }}
-        skillData={{ skillData, fieldResult }}
-      />
 
       {scroll && (
         <div className="topBtn" onClick={() => scrollToY(0)} >
