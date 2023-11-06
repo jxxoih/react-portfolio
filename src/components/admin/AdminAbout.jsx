@@ -13,7 +13,7 @@ const AdminAbout = (props) => {
                         )}
                         {props.aboutChgStat && (
                             <button
-                                onClick={() => console.log("update about data")}
+                                onClick={() => props.aboutFunc()}
                             >
                                 Edit Data
                             </button>

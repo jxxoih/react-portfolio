@@ -4,6 +4,9 @@ import AdminProject from "components/admin/AdminProject";
 import { useEffect } from "react";
 import { useState } from "react";
 
+import * as appUtill from "utills/appUtill";
+import * as config from "config";
+
 const AdminMain = (props) => {
     const [aboutInputs, setIAboutnputs] = useState({
         aboutTitle: props.aboutData?.p_about_title,
@@ -11,7 +14,6 @@ const AdminMain = (props) => {
         change: false
     });
     const [aboutChgStat, setAboutChgStat] = useState(false);
-
     const { aboutTitle, aboutContext } = aboutInputs;
 
     const onChange = (e) => {
@@ -34,7 +36,13 @@ const AdminMain = (props) => {
     }, [aboutInputs]);
 
 
-    // about data update 함수 필요
+    const updateAbout = () => {
+        if (aboutChgStat) {
+            appUtill.reqAPI(config.UPDATE_ABOUT, aboutInputs);
+        } else {
+            return;
+        }
+    }
 
 
     return (
@@ -44,6 +52,7 @@ const AdminMain = (props) => {
                 aboutData={aboutInputs}
                 aboutChgStat={aboutChgStat}
                 inputFunc={onChange}
+                aboutFunc={updateAbout}
             />
             <AdminCompany />
             <AdminProject />

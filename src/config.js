@@ -32,3 +32,4 @@ export const SKILL_FIELD_ACTION = "getSkillField";
 export const GET_COMPANY_ACTION = "getCompany";
 export const GET_PROJECT_ACTION = "getProject";
 export const GET_PROJECT_SKILL_ACTION = "getProjectSkills";
+export const UPDATE_ABOUT = "updateAbout";

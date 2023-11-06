@@ -2,13 +2,14 @@ import axios from 'axios';
 import * as config from "config";
 
 // node 서버 통신 API 모듈
-export const reqAPI = async (action) => {
+export const reqAPI = async (action, arg) => {
     const reqPath = config.API_PATH;
 
     const data = {
         params: {
             p_id: 1,
-            action: action
+            action: action,
+            arg: arg,
         }
     }
 
@@ -17,9 +18,9 @@ export const reqAPI = async (action) => {
         .catch((err) => { console.log("err", err) })
 }
 
-export const resolveData = (action) => {
+export const resolveData = (action, arg) => {
     return new Promise((resolve, reject) => {
-        const data = reqAPI(action);
+        const data = reqAPI(action, arg);
         resolve(data);
         reject([])
     })
