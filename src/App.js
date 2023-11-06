@@ -34,9 +34,7 @@ function App() {
 
   const setAdmin = (arg) => {
     setAdminCheck(arg);
-    setAdmPage(arg);
     setPassword("");
-    navigate("/");
   }
 
   const gnbClick = (e) => {
@@ -103,26 +101,41 @@ function App() {
   }, [adminCheck, password]);
 
   const passwordCheck = () => {
-    !!adminCheck &&
-      window.addEventListener("keydown", (e) => {
-        if (e.keyCode === 13) {
-          if (password === config.ADMIN_PASSWORD) {
-            setAdminCheck(true);
-            setAdmPage(true);
-            setIsAdmin(true);
-            navigate("/admin")
-            e.preventDefault();
-          } else {
-            // 비번틀리면 관리자모드 해제
-            setAdminCheck(false);
-            setAdmPage(false);
-            navigate("/");
-            e.preventDefault();
+    if (adminCheck) {
+      navigate(config.ADMIN_PATH);
+      if (isAdmin) {
+        setAdmPage(true);
+      } else {
+        window.addEventListener("keydown", (e) => {
+          const checkCode = e.keyCode;
+          if (checkCode === 13 || (checkCode >= 48 && checkCode <= 57) || (checkCode >= 65 && checkCode <= 90) || (checkCode >= 96 && checkCode <= 107)) {
+            if (e.key === "Enter") {
+              if (password === config.ADMIN_PASSWORD) {
+                navigate(config.ADMIN_PATH)
+                setIsAdmin(true);
+                setAdmPage(true);
+                e.preventDefault();
+              } else {
+                // 비번틀리면 관리자모드 해제
+                navigate("/");
+                setIsAdmin(false);
+                setAdmPage(false);
+                e.preventDefault();
+              }
+            } else {
+              setPassword(password + e.key);
+            }
           }
-        } else {
-          setPassword(password + e.key);
-        }
-      })
+        })
+      }
+    } else {
+      if (!isAdmin && config.USE_LOCATION.indexOf("/admin") > 0) {
+        setAdminCheck(true);
+      } else {
+        navigate("/");
+        setAdmPage(false);
+      }
+    }
   }
 
   return (
@@ -140,20 +153,18 @@ function App() {
       )}
       <Routes>
         <Route
-          path="/admin"
+          path={config.ADMIN_PATH}
           element={
             <Admin
               isAdmin={isAdmin}
               password={password}
+              isMobile={isMobile}
+              aboutData={aboutData}
+              workData={{ company, project, projectSkill }}
+              skillData={{ skillData, fieldResult }}
             />
           }
         >
-          {/* {admPage && adminCheck && (
-          <Admin
-            isAdmin={isAdmin}
-            password={password}
-          />
-          )} */}
         </Route>
         <Route
           path="/"
@@ -167,15 +178,6 @@ function App() {
             />
           }
         >
-          {/* {!admPage && !adminCheck && (
-        <Main
-          adminCheck={adminCheck}
-          isMobile={isMobile}
-          aboutData={aboutData}
-          workData={{ company, project, projectSkill }}
-          skillData={{ skillData, fieldResult }}
-        />
-        )} */}
         </Route>
       </Routes>
 

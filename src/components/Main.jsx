@@ -16,7 +16,7 @@ const Main = (props) => {
     const [mainTitle, setMainTitle] = useState("");
     const [count, setCount] = useState(0);
 
-    const {company, project, projectSkill} = props.workData;
+    const { company, project, projectSkill } = props.workData;
 
     const returnUrl = (url, e) => {
         if (url) {
@@ -67,7 +67,6 @@ const Main = (props) => {
             <Contact
                 email={props.aboutData[0]?.p_email}
             />
-
         </div>
     );
 }
