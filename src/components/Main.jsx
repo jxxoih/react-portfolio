@@ -49,7 +49,7 @@ const Main = (props) => {
 
             <About
                 isMobile={props.isMobile}
-                aboutData={props.aboutData[0]}
+                aboutData={props.aboutData}
             />
 
             <Work

@@ -8,11 +8,9 @@ import * as appUtill from "utills/appUtill";
 import * as config from "config";
 
 const AdminMain = (props) => {
-    const [aboutInputs, setIAboutnputs] = useState({
-        aboutTitle: props.aboutData?.p_about_title,
-        aboutContext: props.aboutData?.p_about_context,
-        change: false
-    });
+    const [oriData, setOriData] = useState(props.aboutData);
+
+    const [aboutInputs, setAboutInputs] = useState(props.aboutData);
     const [aboutChgStat, setAboutChgStat] = useState(false);
     const { aboutTitle, aboutContext } = aboutInputs;
 
@@ -24,21 +22,21 @@ const AdminMain = (props) => {
             [name]: value,
         };
 
-        setIAboutnputs(nextInputs);
+        setAboutInputs(nextInputs);
     }
 
     useEffect(() => {
-        if (aboutTitle === props.aboutData?.p_about_title && aboutContext === props.aboutData?.p_about_context) {
+        if (aboutTitle === oriData?.aboutTitle && aboutContext === oriData?.aboutContext) {
             setAboutChgStat(false);
         } else {
             setAboutChgStat(true);
         }
-    }, [aboutInputs]);
-
+    }, [aboutInputs, oriData]);
 
     const updateAbout = () => {
         if (aboutChgStat) {
-            appUtill.reqAPI(config.UPDATE_ABOUT, aboutInputs);
+            appUtill.resolveData(config.UPDATE_ABOUT, aboutInputs).then((resolvedData) => setOriData(aboutInputs));
+            props.updateFunc(0);
         } else {
             return;
         }

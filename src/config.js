@@ -25,11 +25,11 @@ export const API_PATH = USE_LOCATION.indexOf("localhost") < 0 ? "https://port-0-
 
 export const MOBILE_PX = 768;
 
-export const ABOUT_ACTION = "getAbout";
-export const WORK_ACTION = "getWork";
-export const SKILL_ACTION = "getSkill";
-export const SKILL_FIELD_ACTION = "getSkillField";
+export const GET_ABOUT_ACTION = "getAbout";
+export const GET_WORK_ACTION = "getWork";
+export const GET_SKILL_ACTION = "getSkill";
+export const GET_SKILL_FIELD_ACTION = "getSkillField";
 export const GET_COMPANY_ACTION = "getCompany";
 export const GET_PROJECT_ACTION = "getProject";
-export const GET_PROJECT_SKILL_ACTION = "getProjectSkills";
+export const GET_PROJECT_GET_SKILL_ACTION = "getProjectSkills";
 export const UPDATE_ABOUT = "updateAbout";

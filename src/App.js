@@ -51,18 +51,17 @@ function App() {
   }
 
   const reqData = () => {
-    appUtill.resolveData(config.ABOUT_ACTION).then((resolvedData) => setAboutData(resolvedData));
+    appUtill.resolveData(config.GET_ABOUT_ACTION).then((resolvedData) => setAboutData(resolvedData[0]));
     appUtill.resolveData(config.GET_COMPANY_ACTION).then((resolvedData) => setCompany(resolvedData));
     appUtill.resolveData(config.GET_PROJECT_ACTION).then((resolvedData) => setProject(resolvedData));
-    appUtill.resolveData(config.GET_PROJECT_SKILL_ACTION).then((resolvedData) => setProjectSkill(resolvedData));
-    appUtill.resolveData(config.SKILL_ACTION).then((resolvedData) => setSkillData(resolvedData));
-    appUtill.resolveData(config.SKILL_FIELD_ACTION).then((resolvedData) => setFieldResult(resolvedData));
+    appUtill.resolveData(config.GET_PROJECT_GET_SKILL_ACTION).then((resolvedData) => setProjectSkill(resolvedData));
+    appUtill.resolveData(config.GET_SKILL_ACTION).then((resolvedData) => setSkillData(resolvedData));
+    appUtill.resolveData(config.GET_SKILL_FIELD_ACTION).then((resolvedData) => setFieldResult(resolvedData));
   }
 
   useEffect(() => {
     // getData
     reqData();
-
 
     function handleResize() {
       let width = window.innerWidth;
@@ -138,6 +137,13 @@ function App() {
     }
   }
 
+  const updateData = (arg) => {
+    if (arg === 0) {
+      appUtill.resolveData(config.GET_ABOUT_ACTION).then((resolvedData) =>
+        setAboutData(resolvedData[0]));
+    }
+  }
+
   return (
     <>
       {!isMobile && (
@@ -162,6 +168,7 @@ function App() {
               aboutData={aboutData}
               workData={{ company, project, projectSkill }}
               skillData={{ skillData, fieldResult }}
+              updateFunc={updateData}
             />
           }
         >

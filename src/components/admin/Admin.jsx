@@ -9,11 +9,15 @@ const Admin = (props) => {
             {props.isAdmin && (
                 <AdminMain
                     isMobile={props.isMobile}
-                    aboutData={props.aboutData[0]}
+                    aboutData={{
+                        aboutTitle: props.aboutData?.p_about_title,
+                        aboutContext: props.aboutData?.p_about_context
+                    }}
                     companyData={company}
                     projectData={project}
                     projectSkillData={projectSkill}
                     skillData={props.skillData}
+                    updateFunc={props.updateFunc}
                 />
             )}
             {!props.isAdmin && (
