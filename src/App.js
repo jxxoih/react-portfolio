@@ -34,6 +34,7 @@ function App() {
 
   const setAdmin = (arg) => {
     setAdminCheck(arg);
+    setAdmPage(true);
     setPassword("");
   }
 
@@ -97,10 +98,10 @@ function App() {
 
   useEffect(() => {
     passwordCheck();
-  }, [adminCheck, password]);
+  }, [adminCheck, password, admPage]);
 
   const passwordCheck = () => {
-    if (adminCheck) {
+    if (adminCheck && admPage) {
       navigate(config.ADMIN_PATH);
       if (isAdmin) {
         setAdmPage(true);
@@ -132,6 +133,7 @@ function App() {
         setAdminCheck(true);
       } else {
         navigate("/");
+        reqData();
         setAdmPage(false);
       }
     }
