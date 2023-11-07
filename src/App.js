@@ -133,6 +133,7 @@ function App() {
         setAdminCheck(true);
       } else {
         navigate("/");
+        // 수정 필요
         reqData();
         setAdmPage(false);
       }
