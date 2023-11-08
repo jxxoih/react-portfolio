@@ -1,0 +1,106 @@
+:root {
+    --company-bg-color: rgb(220, 220, 220);
+}
+
+
+.admCompanyFrame {
+    width: 100%;
+    min-height: 200px;
+    display: flex;
+    justify-content: center;
+    background-color: var(--company-bg-color);
+}
+
+.admCompanyWrap {
+    width: 100%;
+    max-width: 1024px;
+    display: flex;
+}
+
+.admCompanyContent {
+    width: 100%;
+}
+
+.admCompanyList {
+    margin: 30px 0;
+    padding: 0 30px;
+}
+
+.admCompanyList>li {
+    list-style: none;
+    font-size: 1rem;
+    line-height: 2rem;
+    position: relative;
+}
+
+.admCompanyList>li>input {
+    border: none;
+    width: 80%;
+    background-color: var(--company-bg-color);
+    height: 30px;
+    font-size: 1rem;
+    margin: 5px 0;
+    outline: none;
+    cursor: pointer;
+    border-bottom: 1px dashed #8c8c8c;
+}
+
+.admCompanyList>li>input::placeholder {
+    font-size: 1rem;
+}
+
+.admCompanyList>li:not(:last-child):hover::after {
+    font-size: 0.75rem;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    transform: translate(0, -50%);
+    content: "Edit";
+    color: rgb(150, 150, 150);
+}
+
+.addBtnWrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px 0;
+}
+
+.addCompanyBtn,
+.editCompanyBtn {
+    width: 250px;
+    height: 50px;
+    border-radius: 50px;
+    border: 0.5px solid #b0b0b0;
+    position: relative;
+    margin: 10px;
+}
+
+.addCompanyBtn:hover,
+.editCompanyBtn:hover {
+    background-color: #bababa;
+    color: #fff;
+    cursor: pointer;
+}
+
+.addCompanyBtn:hover::before {
+    position: absolute;
+    left: 20%;
+    top: 50%;
+    transform: translate(0, -50%);
+    color: rgb(147, 147, 255);
+    content: " + ";
+    font-size: 1.5rem;
+}
+
+.editCompanyBtn::before {
+    content: " ✓ ";
+    font-size: 1rem;
+    font-weight: 700;
+    color: rgb(44, 161, 0);
+    position: absolute;
+    left: 20%;
+    top: 50%;
+    transform: translate(0, -50%);
+}

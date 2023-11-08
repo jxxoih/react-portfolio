@@ -65,7 +65,7 @@ const Main = (props) => {
                 skillData={props.skillData}
             />
             <Contact
-                email={props.aboutData[0]?.p_email}
+                email={props.aboutData?.p_email}
             />
         </div>
     );

@@ -13,6 +13,8 @@ import * as appUtill from "utills/appUtill";
 import Admin from "components/admin/Admin";
 
 function App() {
+  var isAdmin = localStorage.getItem("isAdmin");
+
   const navigate = useNavigate();
 
   const [aboutData, setAboutData] = useState([]);
@@ -22,7 +24,7 @@ function App() {
   const [skillData, setSkillData] = useState([]);
   const [fieldResult, setFieldResult] = useState([]);
 
-  const [isAdmin, setIsAdmin] = useState(false);
+  // const [isAdmin, setIsAdmin] = useState(false);
   const [adminCheck, setAdminCheck] = useState(false);
   const [password, setPassword] = useState("");
   const [admPage, setAdmPage] = useState(false);
@@ -112,13 +114,15 @@ function App() {
             if (e.key === "Enter") {
               if (password === config.ADMIN_PASSWORD) {
                 navigate(config.ADMIN_PATH)
-                setIsAdmin(true);
+                localStorage.setItem("isAdmin", true);
+                // setIsAdmin(true);
                 setAdmPage(true);
                 e.preventDefault();
               } else {
                 // 비번틀리면 관리자모드 해제
                 navigate("/");
-                setIsAdmin(false);
+                localStorage.removeItem("isAdmin");
+                // setIsAdmin(false);
                 setAdmPage(false);
                 e.preventDefault();
               }
@@ -133,7 +137,7 @@ function App() {
         setAdminCheck(true);
       } else {
         navigate("/");
-        // 수정 필요
+        // TODO:: 수정 필요
         reqData();
         setAdmPage(false);
       }
@@ -144,6 +148,9 @@ function App() {
     if (arg === 0) {
       appUtill.resolveData(config.GET_ABOUT_ACTION).then((resolvedData) =>
         setAboutData(resolvedData[0]));
+    } else if (arg === 1) {
+      appUtill.resolveData(config.GET_COMPANY_ACTION).then((resolvedData) => 
+        setCompany(resolvedData));
     }
   }
 

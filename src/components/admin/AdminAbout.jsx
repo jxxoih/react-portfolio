@@ -4,7 +4,7 @@ const AdminAbout = (props) => {
     const { aboutTitle, aboutContext } = props.aboutData;
 
     return (
-        <div className={styles.aboutWrap + " about"}>
+        <div className={styles.aboutWrap + " admAbout"}>
             <div className={styles.aboutContent}>
                 <div className={styles.aboutTitle}>
                     <p className="wrapTitle">

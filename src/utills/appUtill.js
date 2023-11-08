@@ -7,7 +7,7 @@ export const reqAPI = async (action, arg) => {
 
     const data = {
         params: {
-            p_id: 1,
+            p_idx: 1,
             action: action,
             arg: arg,
         }

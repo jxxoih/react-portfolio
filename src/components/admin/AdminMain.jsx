@@ -52,7 +52,10 @@ const AdminMain = (props) => {
                 inputFunc={onChange}
                 aboutFunc={updateAbout}
             />
-            <AdminCompany />
+            <AdminCompany 
+                companyData={props.companyData}
+                updateFunc={props.updateFunc}
+            />
             <AdminProject />
         </div>
     );

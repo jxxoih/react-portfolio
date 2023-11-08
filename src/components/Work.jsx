@@ -17,7 +17,7 @@ const Work = (props) => {
                     {
                         !!company &&
                         company.map((comp) => (
-                            <div className={props.isMobile ? styles.worksMobile : styles.wokrs} key={comp.w_id}>
+                            <div className={props.isMobile ? styles.worksMobile : styles.wokrs} key={comp.c_idx}>
                                 <div className={styles.companyNm}>
                                     <p>
                                         {comp.company_nm}
@@ -31,8 +31,8 @@ const Work = (props) => {
                                 {
                                     !!project &&
                                     project.map((project) => (
-                                        project.w_id === comp.w_id &&
-                                        < div className={styles.workingList} key={project.pro_id} >
+                                        project.c_idx === comp.c_idx &&
+                                        < div className={styles.workingList} key={project.pro_idx} >
                                             <p className={styles.projectTitle}>
                                                 <span
                                                     className={!!project.pro_url ? styles.setPortfolio : ""}
@@ -60,11 +60,11 @@ const Work = (props) => {
                                                 {
                                                     !!projectSkill &&
                                                     projectSkill.map((psData, idx) => {
-                                                        if (project.pro_id != psData.pro_id) return;
+                                                        if (project.pro_idx != psData.pro_idx) return;
 
-                                                        if (project.pro_id === projectSkill[idx + 1]?.pro_id) {
+                                                        if (project.pro_idx === projectSkill[idx + 1]?.pro_idx) {
                                                             if (project.pro_position === 0) {
-                                                                if (psData.sf_id === projectSkill[idx + 1]?.sf_id) {
+                                                                if (psData.sf_idx === projectSkill[idx + 1]?.sf_idx) {
                                                                     return psData.s_name + ", ";
                                                                 } else {
                                                                     return psData.s_name + " / ";
