@@ -2,7 +2,7 @@ import EnterPassword from "components/admin/EnterPassword";
 import AdminMain from "./AdminMain";
 
 const Admin = (props) => {
-    const { company, project, projectSkill } = props.workData;
+    const { project, projectSkill } = props.workData;
 
     return (
         <>
@@ -13,7 +13,6 @@ const Admin = (props) => {
                         aboutTitle: props.aboutData?.p_about_title,
                         aboutContext: props.aboutData?.p_about_context
                     }}
-                    companyData={company}
                     projectData={project}
                     projectSkillData={projectSkill}
                     skillData={props.skillData}

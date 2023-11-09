@@ -3,10 +3,21 @@ import styles from "styles/admin/AdminCompany.module.css";
 
 import * as config from "config";
 import * as appUtill from "utills/appUtill";
+import CustomSelect from "components/commons/CustomSelect";
+import { useEffect } from "react";
 
 const AdminCompany = (props) => {
     const [companyData, setCompanyData] = useState(props.companyData)
     const [addData, setAddData] = useState([]);
+
+    const empOption = [
+        { value: 0, label: "퇴사전" },
+        { value: 1, label: "퇴사" }
+    ];
+    const useOption = [
+        { value: 0, label: "비활성" },
+        { value: 1, label: "활성" }
+    ];
 
     const onChangeInput = (e) => {
         const idx = e.target.dataset.key;
@@ -36,7 +47,11 @@ const AdminCompany = (props) => {
 
     const addCompany = () => {
         const data = {
-            company_nm: ""
+            company_nm: "",
+            emp_status: 1,
+            use_status: 0,
+            w_end_date: "",
+            w_start_date: ""
         };
 
         setAddData([...addData, data]);
@@ -52,18 +67,18 @@ const AdminCompany = (props) => {
                 updateCompanyData()
             );
         }
-
-        props.updateFunc(0);
     }
 
     const updateCompanyData = () => {
-        appUtill.resolveData(config.GET_COMPANY_ACTION).then((resolvedData) =>
-            setCompanyData(resolvedData));
+        // TODO::현재 페이지 변경시 reqData로 모든 데이터 최신화됨 추후 수정 필요
+        // props.updateFunc(0);
+        props.reqData(1);
         setAddData([]);
     }
 
-    // emp 퇴사 여부 1=퇴사
-    // status 사용할거? 1=사용
+    useEffect(() => {
+        setCompanyData(props.companyData);
+    }, [props.companyData])
 
     return (
         <div className={styles.admCompanyFrame + " admCompany"}>
@@ -76,13 +91,53 @@ const AdminCompany = (props) => {
                         {
                             companyData.map((data, idx) => (
                                 <li key={idx}>
-                                    <input
-                                        data-key={idx}
-                                        name="company_nm"
-                                        onChange={onChangeInput}
-                                        value={data.company_nm}
-                                        placeholder="회사명을 입력하세요."
-                                    />
+                                    <ul className={styles.dataUl}>
+                                        <li>
+                                            <input
+                                                data-key={idx}
+                                                name="company_nm"
+                                                onChange={onChangeInput}
+                                                value={data.company_nm}
+                                                placeholder="회사명을 입력하세요."
+                                            />
+                                        </li>
+                                        <li>
+                                            <input
+                                                data-key={idx}
+                                                name="w_start_date"
+                                                onChange={onChangeInput}
+                                                value={data.w_start_date}
+                                                placeholder="입사일"
+                                            />
+                                        </li>
+                                        <li>
+                                            <input
+                                                data-key={idx}
+                                                name="w_end_date"
+                                                onChange={onChangeInput}
+                                                value={data.w_end_date}
+                                                placeholder="퇴사일"
+                                            />
+                                        </li>
+                                        <li className={styles.dropBox}>
+                                            <CustomSelect
+                                                dataKey={idx}
+                                                name="emp_status"
+                                                onChange={onChangeInput}
+                                                value={data.emp_status}
+                                                options={empOption}
+                                            />
+                                        </li>
+                                        <li className={styles.dropBox}>
+                                            <CustomSelect
+                                                dataKey={idx}
+                                                name="use_status"
+                                                onChange={onChangeInput}
+                                                value={data.use_status}
+                                                options={useOption}
+                                            />
+                                        </li>
+                                    </ul>
                                 </li>
                             ))
                         }
@@ -91,13 +146,53 @@ const AdminCompany = (props) => {
                         {
                             addData.map((data, idx) => (
                                 <li key={idx}>
-                                    <input
-                                        data-key={idx}
-                                        name="company_nm"
-                                        onChange={onChangeAddInput}
-                                        value={data.company_nm}
-                                        placeholder="회사명을 입력하세요."
-                                    />
+                                    <ul className={styles.dataUl}>
+                                        <li>
+                                            <input
+                                                data-key={idx}
+                                                name="company_nm"
+                                                onChange={onChangeAddInput}
+                                                value={data.company_nm}
+                                                placeholder="회사명을 입력하세요."
+                                            />
+                                        </li>
+                                        <li>
+                                            <input
+                                                data-key={idx}
+                                                name="w_start_date"
+                                                onChange={onChangeAddInput}
+                                                value={data.w_start_date}
+                                                placeholder="입사일"
+                                            />
+                                        </li>
+                                        <li>
+                                            <input
+                                                data-key={idx}
+                                                name="w_end_date"
+                                                onChange={onChangeAddInput}
+                                                value={data.w_end_date}
+                                                placeholder="퇴사일"
+                                            />
+                                        </li>
+                                        <li className={styles.dropBox}>
+                                            <CustomSelect
+                                                dataKey={idx}
+                                                name="emp_status"
+                                                onChange={onChangeAddInput}
+                                                value={data.emp_status}
+                                                options={empOption}
+                                            />
+                                        </li>
+                                        <li className={styles.dropBox}>
+                                            <CustomSelect
+                                                dataKey={idx}
+                                                name="use_status"
+                                                onChange={onChangeAddInput}
+                                                value={data.use_status}
+                                                options={useOption}
+                                            />
+                                        </li>
+                                    </ul>
                                 </li>
                             ))
                         }

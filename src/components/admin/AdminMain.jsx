@@ -10,6 +10,8 @@ import * as config from "config";
 const AdminMain = (props) => {
     const [oriData, setOriData] = useState(props.aboutData);
 
+    const [companyData, setCompanyData] = useState([]);
+
     const [aboutInputs, setAboutInputs] = useState(props.aboutData);
     const [aboutChgStat, setAboutChgStat] = useState(false);
     const { aboutTitle, aboutContext } = aboutInputs;
@@ -24,6 +26,19 @@ const AdminMain = (props) => {
 
         setAboutInputs(nextInputs);
     }
+
+
+    const reqData = (arg) => {
+        if (arg === 1) {
+            appUtill.resolveData(config.GET_ADMIN_COMPANY_ACTION).then((resolvedData) =>
+                setCompanyData(resolvedData)
+            );
+        }
+    }
+
+    useEffect(() => {
+        reqData(1);
+    }, []);
 
     useEffect(() => {
         if (aboutTitle === oriData?.aboutTitle && aboutContext === oriData?.aboutContext) {
@@ -52,10 +67,15 @@ const AdminMain = (props) => {
                 inputFunc={onChange}
                 aboutFunc={updateAbout}
             />
-            <AdminCompany 
-                companyData={props.companyData}
-                updateFunc={props.updateFunc}
-            />
+            {
+                companyData && (
+                    <AdminCompany
+                        companyData={companyData}
+                        updateFunc={props.updateFunc}
+                        reqData={reqData}
+                    />
+                )
+            }
             <AdminProject />
         </div>
     );

@@ -23,9 +23,9 @@ const Work = (props) => {
                                         {comp.company_nm}
                                     </p>
                                     <p className={styles.workDt}>
-                                        {comp.w_start_date.split("T")[0]
+                                        {comp.w_start_date
                                             + " ~ " +
-                                            comp.w_end_date.split("T")[0]}
+                                            comp.w_end_date}
                                     </p>
                                 </div>
                                 {
@@ -51,9 +51,9 @@ const Work = (props) => {
                                                     <br />
                                                 )}
                                                 {
-                                                    project.pro_start_date.split("T")[0]
+                                                    project.pro_start_date
                                                     + " ~ " +
-                                                    project.pro_end_date.split("T")[0]
+                                                    project.pro_end_date
                                                 }
                                             </p>
                                             <p className={styles.workSkill}>

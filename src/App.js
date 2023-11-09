@@ -176,7 +176,7 @@ function App() {
               password={password}
               isMobile={isMobile}
               aboutData={aboutData}
-              workData={{ company, project, projectSkill }}
+              workData={{ project, projectSkill }}
               skillData={{ skillData, fieldResult }}
               updateFunc={updateData}
             />

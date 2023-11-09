@@ -33,9 +33,44 @@
     position: relative;
 }
 
-.admCompanyList>li>input {
+.admCompanyList .dataUl {
+    display: flex;
+    padding: 0;
+    width: calc(100% - 30px);
+}
+
+.admCompanyList .dataUl > li {
+    list-style: none;   
+    position: relative;
+    margin-right: 10px;
+}
+
+.admCompanyList .dataUl > li > input {
     border: none;
-    width: 80%;
+    background-color: var(--company-bg-color);
+    height: 30px;
+    font-size: 1rem;
+    margin: 5px 0;
+    outline: none;
+    cursor: pointer;
+    border-bottom: 1px dashed #8c8c8c;
+}
+
+/* .admCompanyList .dataUl > li:not(.dropBox):hover::after { */
+.admCompanyList .dataUl > li:hover::after {
+    
+    font-size: 0.75rem;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    transform: translate(0, -50%);
+    content: "Edit";
+    color: rgb(150, 150, 150);
+}
+
+/* 
+.admCompanyList .dataUl input {
+    border: none;
     background-color: var(--company-bg-color);
     height: 30px;
     font-size: 1rem;
@@ -57,7 +92,7 @@
     transform: translate(0, -50%);
     content: "Edit";
     color: rgb(150, 150, 150);
-}
+} */
 
 .addBtnWrap {
     width: 100%;
