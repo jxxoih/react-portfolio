@@ -12,6 +12,7 @@ const CustomSelect = (props) => {
             {
                 props.options.map((option, idx) => (
                     <option
+                        disabled={option.value === -1}
                         key={idx}
                         value={option.value}
                     >{option.label}</option>

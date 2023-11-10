@@ -14,12 +14,14 @@ const AdminProject = (props) => {
     const [companyList, setCompanyList] = useState([]);
 
     const positionOption = [
-        { value: 0, label: "프론트, 백엔드" },
-        { value: 1, label: "프론트엔드" },
-        { value: 2, label: "백엔드" },
+        {value: -1, label: "Position"},
+        { value: 0, label: "Front, Back-end" },
+        { value: 1, label: "Front-end" },
+        { value: 2, label: "Back-end" },
     ];
 
     const useOption = [
+        { value: -1, label: "사용여부" },
         { value: 0, label: "비활성" },
         { value: 1, label: "활성" }
     ];
@@ -56,7 +58,7 @@ const AdminProject = (props) => {
         const data = {
             c_idx: 1,
             pro_name: "",
-            pro_position: 0,
+            pro_position: -1,
             pro_detail: "",
             pro_url: "",
             pro_start_date: "",
@@ -151,6 +153,15 @@ const AdminProject = (props) => {
                                         <li>
                                             <input
                                                 data-key={idx}
+                                                name="pro_url"
+                                                onChange={onChangeInput}
+                                                value={data.pro_url}
+                                                placeholder="프로젝트 URL"
+                                            />
+                                        </li>
+                                        <li>
+                                            <input
+                                                data-key={idx}
                                                 name="pro_start_date"
                                                 onChange={onChangeInput}
                                                 value={data.pro_start_date}
@@ -164,15 +175,6 @@ const AdminProject = (props) => {
                                                 onChange={onChangeInput}
                                                 value={data.pro_end_date}
                                                 placeholder="종료일"
-                                            />
-                                        </li>
-                                        <li>
-                                            <input
-                                                data-key={idx}
-                                                name="pro_url"
-                                                onChange={onChangeInput}
-                                                value={data.pro_url}
-                                                placeholder="프로젝트 URL"
                                             />
                                         </li>
                                         <li>
@@ -237,6 +239,15 @@ const AdminProject = (props) => {
                                         <li>
                                             <input
                                                 data-key={idx}
+                                                name="pro_url"
+                                                onChange={onChangeAddInput}
+                                                value={data.pro_url}
+                                                placeholder="프로젝트 URL"
+                                            />
+                                        </li>
+                                        <li>
+                                            <input
+                                                data-key={idx}
                                                 name="pro_start_date"
                                                 onChange={onChangeAddInput}
                                                 value={data.pro_start_date}
@@ -250,15 +261,6 @@ const AdminProject = (props) => {
                                                 onChange={onChangeAddInput}
                                                 value={data.pro_end_date}
                                                 placeholder="종료일"
-                                            />
-                                        </li>
-                                        <li>
-                                            <input
-                                                data-key={idx}
-                                                name="pro_url"
-                                                onChange={onChangeAddInput}
-                                                value={data.pro_url}
-                                                placeholder="프로젝트 URL"
                                             />
                                         </li>
                                         <li>

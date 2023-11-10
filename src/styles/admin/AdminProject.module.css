@@ -55,7 +55,15 @@
     border-bottom: 1px dashed #8c8c8c;
 }
 
-
+.admProjectList .dataUl > li:hover::after {
+    font-size: 0.75rem;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    transform: translate(0, -50%);
+    content: "Edit";
+    color: rgb(150, 150, 150);
+}
 
 
 .addBtnWrap {
