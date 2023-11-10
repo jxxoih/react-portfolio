@@ -11,6 +11,7 @@ const AdminMain = (props) => {
     const [oriData, setOriData] = useState(props.aboutData);
 
     const [companyData, setCompanyData] = useState([]);
+    const [projectData, setProjectData] = useState([]);
 
     const [aboutInputs, setAboutInputs] = useState(props.aboutData);
     const [aboutChgStat, setAboutChgStat] = useState(false);
@@ -33,11 +34,24 @@ const AdminMain = (props) => {
             appUtill.resolveData(config.GET_ADMIN_COMPANY_ACTION).then((resolvedData) =>
                 setCompanyData(resolvedData)
             );
+        } else if (arg === 2) {
+            appUtill.resolveData(config.GET_ADMIN_PROJECT_ACTION).then((resolvedData) =>
+                setProjectData(resolvedData)
+            );
+        } else {
+
+
+            appUtill.resolveData(config.GET_ADMIN_COMPANY_ACTION).then((resolvedData) =>
+                setCompanyData(resolvedData)
+            );
+            appUtill.resolveData(config.GET_ADMIN_PROJECT_ACTION).then((resolvedData) =>
+                setProjectData(resolvedData)
+            );
         }
     }
 
     useEffect(() => {
-        reqData(1);
+        reqData();
     }, []);
 
     useEffect(() => {
@@ -76,7 +90,15 @@ const AdminMain = (props) => {
                     />
                 )
             }
-            <AdminProject />
+            {
+                projectData && (
+                    <AdminProject
+                        companyData={companyData}
+                        projectData={projectData}
+                        reqData={reqData}
+                    />
+                )
+            }
         </div>
     );
 }

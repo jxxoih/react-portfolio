@@ -63,7 +63,7 @@ const AdminCompany = (props) => {
         );
 
         if (addData.length > 0) {
-            appUtill.resolveData(config.ADD_NEW_COMPANY, addData).then((resolvedData) =>
+            appUtill.resolveData(config.INSERT_NEW_COMPANY, addData).then((resolvedData) =>
                 updateCompanyData()
             );
         }

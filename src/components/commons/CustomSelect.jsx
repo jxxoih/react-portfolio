@@ -3,7 +3,7 @@ import "styles/customSelect.css";
 const CustomSelect = (props) => {
     return (
         <select
-            className="customSelectBox"
+            className={"customSelectBox " + props.classNm}
             name={props.name}
             data-key={props.dataKey}
             onChange={props.onChange}

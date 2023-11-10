@@ -1,3 +1,8 @@
+:root {
+    --company-bg-color: rgb(220, 220, 220);
+    --project-bg-color: rgb(205, 205, 205);
+}
+
 @font-face {
     font-family: 'intelone-mono';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-1@1.1/intelone-mono-font-family-regular.woff2') format('woff2');

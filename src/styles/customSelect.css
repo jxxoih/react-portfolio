@@ -1,12 +1,13 @@
-:root {
-    --bg-color: rgb(220, 220, 220);
-}
-
 .customSelectBox {
     width: 60px;
     height: 38px;
-    background-color: var(--bg-color);
+    background-color: var(--company-bg-color);
     border: none;
     border-bottom: 1px dashed #8c8c8c;
     outline: none;
+}
+
+.customSelectBox.project {
+    width: 155px;
+    background-color: var(--project-bg-color);
 }
