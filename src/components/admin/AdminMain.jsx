@@ -12,6 +12,7 @@ const AdminMain = (props) => {
 
     const [companyData, setCompanyData] = useState([]);
     const [projectData, setProjectData] = useState([]);
+    const [skillList, setSkillList] = useState([]);
 
     const [aboutInputs, setAboutInputs] = useState(props.aboutData);
     const [aboutChgStat, setAboutChgStat] = useState(false);
@@ -39,13 +40,14 @@ const AdminMain = (props) => {
                 setProjectData(resolvedData)
             );
         } else {
-
-
             appUtill.resolveData(config.GET_ADMIN_COMPANY_ACTION).then((resolvedData) =>
                 setCompanyData(resolvedData)
             );
             appUtill.resolveData(config.GET_ADMIN_PROJECT_ACTION).then((resolvedData) =>
                 setProjectData(resolvedData)
+            );
+            appUtill.resolveData(config.GET_SKILL_LIST).then((resolvedData) =>
+                setSkillList(resolvedData)
             );
         }
     }
@@ -95,6 +97,7 @@ const AdminMain = (props) => {
                     <AdminProject
                         companyData={companyData}
                         projectData={projectData}
+                        skillList={skillList}
                         reqData={reqData}
                     />
                 )
