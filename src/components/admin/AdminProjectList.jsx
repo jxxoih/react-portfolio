@@ -2,8 +2,7 @@ import CustomSelect from "components/commons/CustomSelect";
 import styles from "styles/admin/AdminProject.module.css";
 
 const AdminProjectList = (props) => {
-    const { projectData, onChangeInput, companyList, checkHandler, newProjectSkill } = props;
-
+    const { projectData, onChangeInput, companyList, checkHandler, newProjectSkill, newProjectStatus } = props;
 
     const positionOption = [
         { value: -1, label: "Position" },
@@ -22,84 +21,86 @@ const AdminProjectList = (props) => {
         <ul className={styles.admProjectList}>
             {
                 projectData.length > 0 &&
-                    projectData.map((data, idx) => (
-                        <li key={idx}>
-                            <ul className={styles.dataUl}>
-                                <li>
-                                    <CustomSelect
-                                        classNm="project"
-                                        dataKey={idx}
-                                        name="c_idx"
-                                        onChange={onChangeInput}
-                                        value={data.c_idx}
-                                        options={companyList}
-                                    />
-                                </li>
-                                <li>
-                                    <input
-                                        data-key={idx}
-                                        name="pro_name"
-                                        onChange={onChangeInput}
-                                        value={data.pro_name}
-                                        placeholder="프로젝트명."
-                                    />
-                                </li>
-                                <li>
-                                    <input
-                                        data-key={idx}
-                                        name="pro_detail"
-                                        onChange={onChangeInput}
-                                        value={data.pro_detail}
-                                        placeholder="프로젝트 내용."
-                                    />
-                                </li>
-                                <li>
-                                    <input
-                                        data-key={idx}
-                                        name="pro_url"
-                                        onChange={onChangeInput}
-                                        value={data.pro_url}
-                                        placeholder="프로젝트 URL"
-                                    />
-                                </li>
-                                <li>
-                                    <input
-                                        data-key={idx}
-                                        name="pro_start_date"
-                                        onChange={onChangeInput}
-                                        value={data.pro_start_date}
-                                        placeholder="시작일"
-                                    />
-                                </li>
-                                <li>
-                                    <input
-                                        data-key={idx}
-                                        name="pro_end_date"
-                                        onChange={onChangeInput}
-                                        value={data.pro_end_date}
-                                        placeholder="종료일"
-                                    />
-                                </li>
-                                <li>
-                                    <CustomSelect
-                                        classNm="project"
-                                        dataKey={idx}
-                                        name="pro_position"
-                                        onChange={onChangeInput}
-                                        value={data.pro_position}
-                                        options={positionOption}
-                                    />
-                                </li>
-                                <li>
-                                    <CustomSelect
-                                        classNm="project"
-                                        dataKey={idx}
-                                        name="use_status"
-                                        onChange={onChangeInput}
-                                        value={data.use_status}
-                                        options={useOption}
-                                    />
-                                </li>
+                projectData.map((data, idx) => (
+                    <li key={idx}>
+                        <ul className={styles.dataUl}>
+                            <li>
+                                <CustomSelect
+                                    classNm="project"
+                                    dataKey={idx}
+                                    name="c_idx"
+                                    onChange={onChangeInput}
+                                    value={data.c_idx}
+                                    options={companyList}
+                                />
+                            </li>
+                            <li>
+                                <input
+                                    data-key={idx}
+                                    name="pro_name"
+                                    onChange={onChangeInput}
+                                    value={data.pro_name}
+                                    placeholder="프로젝트명."
+                                />
+                            </li>
+                            <li>
+                                <input
+                                    data-key={idx}
+                                    name="pro_detail"
+                                    onChange={onChangeInput}
+                                    value={data.pro_detail}
+                                    placeholder="프로젝트 내용."
+                                />
+                            </li>
+                            <li>
+                                <input
+                                    data-key={idx}
+                                    name="pro_url"
+                                    onChange={onChangeInput}
+                                    value={data.pro_url}
+                                    placeholder="프로젝트 URL"
+                                />
+                            </li>
+                            <li>
+                                <input
+                                    data-key={idx}
+                                    name="pro_start_date"
+                                    onChange={onChangeInput}
+                                    value={data.pro_start_date}
+                                    placeholder="시작일"
+                                />
+                            </li>
+                            <li>
+                                <input
+                                    data-key={idx}
+                                    name="pro_end_date"
+                                    onChange={onChangeInput}
+                                    value={data.pro_end_date}
+                                    placeholder="종료일"
+                                />
+                            </li>
+                            <li>
+                                <CustomSelect
+                                    classNm="project"
+                                    dataKey={idx}
+                                    name="pro_position"
+                                    onChange={onChangeInput}
+                                    value={data.pro_position}
+                                    options={positionOption}
+                                />
+                            </li>
+                            <li>
+                                <CustomSelect
+                                    classNm="project"
+                                    dataKey={idx}
+                                    name="use_status"
+                                    onChange={onChangeInput}
+                                    value={data.use_status}
+                                    options={useOption}
+                                />
+                            </li>
+                            {
+                                newProjectStatus &&
                                 <li className={styles.skillList}>
                                     {
                                         props.skillList.map((skill) => (
@@ -123,9 +124,10 @@ const AdminProjectList = (props) => {
                                         ))
                                     }
                                 </li>
-                            </ul>
-                        </li>
-                    ))
+                            }
+                        </ul>
+                    </li>
+                ))
             }
         </ul>
     );

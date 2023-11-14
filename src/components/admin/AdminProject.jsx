@@ -156,6 +156,7 @@ const AdminProject = (props) => {
                         checkHandler={checkHandler}
                         newProjectSkill={newProjectSkill}
                         skillList={props.skillList}
+                        newProjectStatus
                     />
 
                     <AdminProjectList
@@ -165,6 +166,7 @@ const AdminProject = (props) => {
                         checkHandler={checkHandler}
                         newProjectSkill={newProjectSkill}
                         skillList={props.skillList}
+                        newProjectStatus={false}
                     />
 
 
