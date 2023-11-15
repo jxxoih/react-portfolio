@@ -5,7 +5,7 @@ import AdminMain from "components/admin/AdminMain";
 import * as config from "config";
 
 const Admin = (props) => {
-    const { isAdmin, isMobile, aboutData, updateFunc, setAdmin, setPage } = props;
+    const { isAdmin, isMobile, aboutData, setAdmin, setPage } = props;
     const [password, setPassword] = useState("");
 
     useEffect(() => {
@@ -52,7 +52,6 @@ const Admin = (props) => {
                         aboutTitle: aboutData?.p_about_title,
                         aboutContext: aboutData?.p_about_context
                     }}
-                    updateFunc={updateFunc}
                 />
             )}
             {!isAdmin && (

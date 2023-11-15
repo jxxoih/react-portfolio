@@ -73,7 +73,6 @@ const AdminCompany = (props) => {
 
     const updateCompanyData = () => {
         // TODO::현재 페이지 변경시 reqData로 모든 데이터 최신화됨 추후 수정 필요
-        // props.updateFunc(0);
         props.reqData(1);
         setAddData([]);
     }

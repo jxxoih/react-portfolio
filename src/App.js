@@ -84,16 +84,6 @@ function App() {
 
   }, [])
 
-  const updateData = (arg) => {
-    if (arg === 0) {
-      appUtill.resolveData(config.GET_ABOUT_ACTION).then((resolvedData) =>
-        setAboutData(resolvedData[0]));
-    } else if (arg === 1) {
-      appUtill.resolveData(config.GET_COMPANY_ACTION).then((resolvedData) =>
-        setCompany(resolvedData));
-    }
-  }
-
   const setAdminAuthrizeExpireTime = () => {
     const keyName = "isAdmin";
 
@@ -140,6 +130,8 @@ function App() {
     } else {
       navigate("/");
     }
+
+    reqData();
   }
 
   const setAdminAuthrize = (status) => {
@@ -169,7 +161,6 @@ function App() {
               isAdmin={isAdmin}
               isMobile={isMobile}
               aboutData={aboutData}
-              updateFunc={updateData}
               setAdmin={setAdminAuthrize}
               setPage={setPage}
             />

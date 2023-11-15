@@ -25,7 +25,7 @@ const Skill = (props) => {
                                             <li
                                                 style={{ backgroundImage: `url(${config.IMG_PATH + data.s_img})` }}
                                                 key={data.s_idx}
-                                                className={!!data?.s_idx === 12 ? styles.setUrl : ""}
+                                                className={data?.s_idx === 12 ? styles.setUrl : ""}
                                                 onClick={data.s_idx === 12 ? (e) => props.func(`https://github.com/${data.p_github}`, e) : console.log()}
                                             >
                                                 <div className={styles.iconHover}>

@@ -67,7 +67,6 @@ const AdminMain = (props) => {
     const updateAbout = () => {
         if (aboutChgStat) {
             appUtill.resolveData(config.UPDATE_ABOUT, aboutInputs).then((resolvedData) => setOriData(aboutInputs));
-            props.updateFunc(0);
         } else {
             return;
         }
@@ -87,7 +86,6 @@ const AdminMain = (props) => {
                 companyData && (
                     <AdminCompany
                         companyData={companyData}
-                        updateFunc={props.updateFunc}
                         reqData={reqData}
                     />
                 )
