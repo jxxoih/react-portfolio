@@ -13,8 +13,6 @@ import * as appUtill from "utills/appUtill";
 import Admin from "components/admin/Admin";
 
 function App() {
-  var isAdmin = localStorage.getItem("isAdmin");
-
   const navigate = useNavigate();
 
   const [aboutData, setAboutData] = useState([]);
@@ -24,21 +22,9 @@ function App() {
   const [skillData, setSkillData] = useState([]);
   const [fieldResult, setFieldResult] = useState([]);
 
-  // const [isAdmin, setIsAdmin] = useState(false);
-  const [adminCheck, setAdminCheck] = useState(false);
-  const [password, setPassword] = useState("");
-  const [admPage, setAdmPage] = useState(false);
-
-
   const [y, setY] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [scroll, setScroll] = useState(false);
-
-  const setAdmin = (arg) => {
-    setAdminCheck(arg);
-    setAdmPage(true);
-    setPassword("");
-  }
 
   const gnbClick = (e) => {
     let targetY = document.querySelector("." + config.GNB_LIST[e]).getBoundingClientRect().y;
@@ -98,59 +84,68 @@ function App() {
 
   }, [])
 
-  useEffect(() => {
-    passwordCheck();
-  }, [adminCheck, password, admPage]);
-
-  const passwordCheck = () => {
-    if (adminCheck && admPage) {
-      navigate(config.ADMIN_PATH);
-      if (isAdmin) {
-        setAdmPage(true);
-      } else {
-        window.addEventListener("keydown", (e) => {
-          const checkCode = e.keyCode;
-          if (checkCode === 13 || (checkCode >= 48 && checkCode <= 57) || (checkCode >= 65 && checkCode <= 90) || (checkCode >= 96 && checkCode <= 107)) {
-            if (e.key === "Enter") {
-              if (password === config.ADMIN_PASSWORD) {
-                navigate(config.ADMIN_PATH)
-                localStorage.setItem("isAdmin", true);
-                // setIsAdmin(true);
-                setAdmPage(true);
-                e.preventDefault();
-              } else {
-                // 비번틀리면 관리자모드 해제
-                navigate("/");
-                localStorage.removeItem("isAdmin");
-                // setIsAdmin(false);
-                setAdmPage(false);
-                e.preventDefault();
-              }
-            } else {
-              setPassword(password + e.key);
-            }
-          }
-        })
-      }
-    } else {
-      if (!isAdmin && config.USE_LOCATION.indexOf("/admin") > 0) {
-        setAdminCheck(true);
-      } else {
-        navigate("/");
-        // TODO:: 수정 필요
-        reqData();
-        setAdmPage(false);
-      }
-    }
-  }
-
   const updateData = (arg) => {
     if (arg === 0) {
       appUtill.resolveData(config.GET_ABOUT_ACTION).then((resolvedData) =>
         setAboutData(resolvedData[0]));
     } else if (arg === 1) {
-      appUtill.resolveData(config.GET_COMPANY_ACTION).then((resolvedData) => 
+      appUtill.resolveData(config.GET_COMPANY_ACTION).then((resolvedData) =>
         setCompany(resolvedData));
+    }
+  }
+
+  const setAdminAuthrizeExpireTime = () => {
+    const keyName = "isAdmin";
+
+    const obj = {
+      value: keyName,
+      expire: Date.now() + config.ADMIN_AUTHORITY_EXPIRE_TIME
+    }
+
+    const objString = JSON.stringify(obj);
+
+    window.localStorage.setItem(keyName, objString);
+
+    return true;
+  }
+  const getAdminAuthrizeExpireTime = () => {
+    const keyName = "isAdmin";
+
+    const objString = window.localStorage.getItem(keyName);
+
+    if (!!!objString) {
+      return false;
+    }
+
+    const obj = JSON.parse(objString);
+
+    if (Date.now() > obj.expire) {
+      window.localStorage.removeItem(keyName);
+
+      return false;
+    }
+
+    return true;
+  }
+
+  const [isAdmin, setIsAdmin] = useState(null);
+  const [admPage, setAdmPage] = useState(false);
+
+  const setPage = (status) => {
+    setAdmPage(status);
+
+    if (status) {
+      navigate(config.ADMIN_PATH);
+      setIsAdmin(getAdminAuthrizeExpireTime());
+    } else {
+      navigate("/");
+    }
+  }
+
+  const setAdminAuthrize = (status) => {
+    // 관리자 권한 생성
+    if (status) {
+      setIsAdmin(setAdminAuthrizeExpireTime());
     }
   }
 
@@ -159,8 +154,7 @@ function App() {
       {!isMobile && (
         <Header
           func={gnbClick}
-          setAdmin={setAdmin}
-          isAdmin={isAdmin}
+          setPage={setPage}
           admPage={admPage}
         />
       )}
@@ -173,10 +167,11 @@ function App() {
           element={
             <Admin
               isAdmin={isAdmin}
-              password={password}
               isMobile={isMobile}
               aboutData={aboutData}
               updateFunc={updateData}
+              setAdmin={setAdminAuthrize}
+              setPage={setPage}
             />
           }
         >
@@ -185,7 +180,6 @@ function App() {
           path="/"
           element={
             <Main
-              adminCheck={adminCheck}
               isMobile={isMobile}
               aboutData={aboutData}
               workData={{ company, project, projectSkill }}
