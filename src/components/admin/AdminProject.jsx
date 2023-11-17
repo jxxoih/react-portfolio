@@ -119,14 +119,14 @@ const AdminProject = (props) => {
         })
     }
 
-    const editProject = () => {
-        appUtill.resolveData(config.UPDATE_PROJECT, { projectData, newProjectSkill }).then((resolvedData) =>
+    const editProject = async () => {
+        await appUtill.resolveData(config.UPDATE_PROJECT, { projectData, newProjectSkill }).then((resolvedData) =>
             setProjectData(projectData)
         );
         if (addData.length > 0) {
             appUtill.resolveData(config.INSERT_NEW_PROJECT, addData);
         }
-        updateProjectData();
+        await updateProjectData();
         setAddData([]);
         setNewProjectSkill([]);
     }

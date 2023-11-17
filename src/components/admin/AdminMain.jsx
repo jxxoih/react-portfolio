@@ -43,7 +43,7 @@ const AdminMain = (props) => {
             appUtill.resolveData(config.GET_ADMIN_COMPANY_ACTION).then((resolvedData) =>
                 setCompanyData(resolvedData)
             );
-            appUtill.resolveData(config.GET_ADMIN_PROJECT_ACTION).then((resolvedData) =>
+            appUtill.resolveData(config.GET_ADMIN_PROJECT_ACTION).then((resolvedData) => 
                 setProjectData(resolvedData)
             );
             appUtill.resolveData(config.GET_SKILL_LIST).then((resolvedData) =>

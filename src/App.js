@@ -48,41 +48,7 @@ function App() {
     appUtill.resolveData(config.GET_SKILL_FIELD_ACTION).then((resolvedData) => setFieldResult(resolvedData));
   }
 
-  useEffect(() => {
-    // getData
-    reqData();
 
-    function handleResize() {
-      let width = window.innerWidth;
-      if (width <= config.MOBILE_PX) {
-        setIsMobile(true);
-      } else {
-        setIsMobile(false);
-      }
-    };
-
-    function topBtn() {
-      let offsetY = window.pageYOffset;
-      setY(offsetY);
-
-      if (offsetY > 20) {
-        setScroll(true);
-      } else {
-        setScroll(false);
-      }
-    }
-
-    window.addEventListener('resize', handleResize);
-    handleResize();
-    window.addEventListener('scroll', topBtn);
-    topBtn();
-
-    return () => {
-      window.removeEventListener('scroll', topBtn);
-      window.removeEventListener('resize', handleResize);
-    }
-
-  }, [])
 
   const setAdminAuthrizeExpireTime = () => {
     const keyName = "isAdmin";
@@ -118,8 +84,15 @@ function App() {
     return true;
   }
 
+  const getPage = () => {
+    var curPath = window.location.pathname;
+    curPath = curPath.indexOf("admin") > 0 ? true : false;
+    
+    return curPath;
+  }
+
   const [isAdmin, setIsAdmin] = useState(null);
-  const [admPage, setAdmPage] = useState(false);
+  const [admPage, setAdmPage] = useState(getPage());
 
   const setPage = (status) => {
     setAdmPage(status);
@@ -141,6 +114,42 @@ function App() {
     }
   }
 
+  useEffect(() => {
+    setIsAdmin(getAdminAuthrizeExpireTime());
+    // getData
+    reqData();
+    
+    function handleResize() {
+      let width = window.innerWidth;
+      if (width <= config.MOBILE_PX) {
+        setIsMobile(true);
+      } else {
+        setIsMobile(false);
+      }
+    };
+
+    function topBtn() {
+      let offsetY = window.pageYOffset;
+      setY(offsetY);
+
+      if (offsetY > 20) {
+        setScroll(true);
+      } else {
+        setScroll(false);
+      }
+    }
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+    window.addEventListener('scroll', topBtn);
+    topBtn();
+
+    return () => {
+      window.removeEventListener('scroll', topBtn);
+      window.removeEventListener('resize', handleResize);
+    }
+
+  }, [])
   return (
     <>
       {!isMobile && (

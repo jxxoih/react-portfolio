@@ -1,6 +1,7 @@
 .admCompanyFrame {
     width: 100%;
     min-height: 200px;
+    padding-top: 100px;
     display: flex;
     justify-content: center;
     background-color: var(--company-bg-color);
