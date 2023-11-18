@@ -1,19 +1,64 @@
+import { useEffect } from "react";
+import { useState } from "react";
 import styles from "styles/admin/AdminAbout.module.css";
 
+import * as config from "config";
+import * as appUtill from "utills/appUtill";
+
 const AdminAbout = (props) => {
-    const { aboutTitle, aboutContext } = props.aboutData;
+    const { reqData } = props;
+
+    const [aboutData, setAboutData] = useState(props.aboutData);
+    const [oriData, setOriData] = useState(props.aboutData);
+    const [aboutChgStat, setAboutChgStat] = useState(false);
+
+    const onChangeAbout = (e) => {
+        const { name, value } = e.target;
+
+        const nextInputs = {
+            ...aboutData,
+            [name]: value,
+        };
+        setAboutData(nextInputs);
+
+        if (nextInputs.p_about_title != oriData.p_about_title
+            || nextInputs.p_about_context != oriData.p_about_context) {
+            setAboutChgStat(true);
+        } else {
+            setAboutChgStat(false);
+        }
+    }
+
+    const updateAbout = async () => {
+        if (aboutChgStat) {
+            await appUtill.resolveData(config.UPDATE_ABOUT, aboutData).then((resolvedData) => {
+                setOriData(aboutData)
+            }
+            );
+        } else {
+            return;
+        }
+
+        setAboutChgStat(false);
+        await reqData(0);
+    }
+
+    useEffect(() => {
+        setOriData(props.aboutData);
+        setAboutData(props.aboutData);
+    }, [props.aboutData]);
 
     return (
         <div className={styles.aboutWrap + " admAbout"}>
             <div className={styles.aboutContent}>
                 <div className={styles.aboutTitle}>
                     <p className="wrapTitle">
-                        {!props.aboutChgStat && (
+                        {!aboutChgStat && (
                             "About Me."
                         )}
-                        {props.aboutChgStat && (
+                        {aboutChgStat && (
                             <button
-                                onClick={() => props.aboutFunc()}
+                                onClick={() => updateAbout()}
                             >
                                 Edit Data
                             </button>
@@ -21,22 +66,24 @@ const AdminAbout = (props) => {
                     </p>
                 </div>
                 <div className={styles.aboutContext}>
+
                     <p className={styles.aboutContextTitle}>
                         <input
-                            name="aboutTitle"
+                            name="p_about_title"
                             type="text"
-                            value={aboutTitle}
-                            onChange={props.inputFunc}
+                            value={aboutData.p_about_title || ""}
+                            onChange={onChangeAbout}
                         />
                     </p>
                     <p className={styles.aboutContexts}>
                         <textarea
-                            name="aboutContext"
-                            value={aboutContext}
-                            onChange={props.inputFunc}
+                            name="p_about_context"
+                            value={aboutData.p_about_context || ""}
+                            onChange={onChangeAbout}
                         >
                         </textarea>
                     </p>
+
                 </div>
             </div>
         </div>

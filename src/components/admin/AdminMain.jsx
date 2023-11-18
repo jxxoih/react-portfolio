@@ -8,30 +8,18 @@ import * as appUtill from "utills/appUtill";
 import * as config from "config";
 
 const AdminMain = (props) => {
-    const [oriData, setOriData] = useState(props.aboutData);
-
     const [companyData, setCompanyData] = useState([]);
     const [projectData, setProjectData] = useState([]);
     const [skillList, setSkillList] = useState([]);
-
-    const [aboutInputs, setAboutInputs] = useState(props.aboutData);
-    const [aboutChgStat, setAboutChgStat] = useState(false);
-    const { aboutTitle, aboutContext } = aboutInputs;
-
-    const onChange = (e) => {
-        const { name, value } = e.target;
-
-        const nextInputs = {
-            ...aboutInputs,
-            [name]: value,
-        };
-
-        setAboutInputs(nextInputs);
-    }
+    const [aboutData, setAboutData] = useState([]);
 
 
     const reqData = (arg) => {
-        if (arg === 1) {
+        if (arg === 0) {
+            appUtill.resolveData(config.GET_ABOUT_ACTION).then((resolvedData) =>
+                setAboutData(resolvedData[0])
+            );
+        } else if (arg === 1) {
             appUtill.resolveData(config.GET_ADMIN_COMPANY_ACTION).then((resolvedData) =>
                 setCompanyData(resolvedData)
             );
@@ -40,10 +28,13 @@ const AdminMain = (props) => {
                 setProjectData(resolvedData)
             );
         } else {
+            appUtill.resolveData(config.GET_ABOUT_ACTION).then((resolvedData) =>
+                setAboutData(resolvedData[0])
+            );
             appUtill.resolveData(config.GET_ADMIN_COMPANY_ACTION).then((resolvedData) =>
                 setCompanyData(resolvedData)
             );
-            appUtill.resolveData(config.GET_ADMIN_PROJECT_ACTION).then((resolvedData) => 
+            appUtill.resolveData(config.GET_ADMIN_PROJECT_ACTION).then((resolvedData) =>
                 setProjectData(resolvedData)
             );
             appUtill.resolveData(config.GET_SKILL_LIST).then((resolvedData) =>
@@ -56,32 +47,17 @@ const AdminMain = (props) => {
         reqData();
     }, []);
 
-    useEffect(() => {
-        if (aboutTitle === oriData?.aboutTitle && aboutContext === oriData?.aboutContext) {
-            setAboutChgStat(false);
-        } else {
-            setAboutChgStat(true);
-        }
-    }, [aboutInputs, oriData]);
-
-    const updateAbout = () => {
-        if (aboutChgStat) {
-            appUtill.resolveData(config.UPDATE_ABOUT, aboutInputs).then((resolvedData) => setOriData(aboutInputs));
-        } else {
-            return;
-        }
-    }
-
-
     return (
         <div className="adminFrame">
-            <AdminAbout
-                isMobile={props.isMobile}
-                aboutData={aboutInputs}
-                aboutChgStat={aboutChgStat}
-                inputFunc={onChange}
-                aboutFunc={updateAbout}
-            />
+            {
+                aboutData && (
+                    <AdminAbout
+                        isMobile={props.isMobile}
+                        aboutData={aboutData}
+                        reqData={reqData}
+                    />
+                )
+            }
             {
                 companyData && (
                     <AdminCompany
