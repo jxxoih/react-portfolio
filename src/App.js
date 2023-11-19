@@ -87,7 +87,7 @@ function App() {
   const getPage = () => {
     var curPath = window.location.pathname;
     curPath = curPath.indexOf("admin") > 0 ? true : false;
-    
+
     return curPath;
   }
 
@@ -103,7 +103,8 @@ function App() {
     } else {
       navigate("/");
     }
-
+    
+    scrollToY(0);
     reqData();
   }
 
@@ -118,7 +119,7 @@ function App() {
     setIsAdmin(getAdminAuthrizeExpireTime());
     // getData
     reqData();
-    
+
     function handleResize() {
       let width = window.innerWidth;
       if (width <= config.MOBILE_PX) {
