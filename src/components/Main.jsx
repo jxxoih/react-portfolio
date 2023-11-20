@@ -16,7 +16,8 @@ const Main = (props) => {
     const [mainTitle, setMainTitle] = useState("");
     const [count, setCount] = useState(0);
 
-    const { company, project, projectSkill } = props.workData;
+    const { isMobile, aboutData, skillData, workData } = props;
+    const { company, project, projectSkill } = workData;
 
     const returnUrl = (url, e) => {
         if (url) {
@@ -48,24 +49,24 @@ const Main = (props) => {
             </div>
 
             <About
-                isMobile={props.isMobile}
-                aboutData={props.aboutData}
+                isMobile={isMobile}
+                aboutData={aboutData}
             />
 
             <Work
                 func={returnUrl}
-                isMobile={props.isMobile}
+                isMobile={isMobile}
                 companyData={company}
                 projectData={project}
                 projectSkillData={projectSkill}
             />
             <Skill
                 func={returnUrl}
-                isMobile={props.isMobile}
-                skillData={props.skillData}
+                isMobile={isMobile}
+                skillDataList={skillData}
             />
             <Contact
-                email={props.aboutData?.p_email}
+                email={aboutData?.p_email}
             />
         </div>
     );

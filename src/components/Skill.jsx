@@ -3,7 +3,8 @@ import styles from "styles/Skill.module.css";
 import * as config from "config";
 
 const Skill = (props) => {
-    const { fieldResult, skillData } = props.skillData;
+    const {isMobile, func, skillDataList} = props;
+    const { fieldResult, skillData } = skillDataList;
 
     return (
         <div className={styles.skillWrap + " skills"}>
@@ -12,12 +13,12 @@ const Skill = (props) => {
                     Skills.
                 </p>
             </div>
-            <div className={props.isMobile ? styles.skillMobileContent : styles.skillContent}>
+            <div className={isMobile ? styles.skillMobileContent : styles.skillContent}>
                 {!!fieldResult &&
                     fieldResult.map((field, fidx) => (
                         <div className={styles.skillList} key={fidx}>
-                            <div className={props.isMobile ? styles.skillMobileBox : styles.skillBox}>
-                                <p className={props.isMobile ? styles.stackTitleMobile : styles.stackTitle}>{field.sf_name}</p>
+                            <div className={isMobile ? styles.skillMobileBox : styles.skillBox}>
+                                <p className={isMobile ? styles.stackTitleMobile : styles.stackTitle}>{field.sf_name}</p>
                                 <ul>
                                     {!!skillData &&
                                         skillData.map((data) => (
@@ -26,7 +27,7 @@ const Skill = (props) => {
                                                 style={{ backgroundImage: `url(${config.IMG_PATH + data.s_img})` }}
                                                 key={data.s_idx}
                                                 className={data?.s_idx === 12 ? styles.setUrl : ""}
-                                                onClick={data.s_idx === 12 ? (e) => props.func(`https://github.com/${data.p_github}`, e) : console.log()}
+                                                onClick={data.s_idx === 12 ? (e) => func(`https://github.com/${data.p_github}`, e) : console.log()}
                                             >
                                                 <div className={styles.iconHover}>
                                                     {

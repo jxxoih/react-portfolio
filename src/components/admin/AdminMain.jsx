@@ -8,6 +8,7 @@ import * as appUtill from "utills/appUtill";
 import * as config from "config";
 
 const AdminMain = (props) => {
+    const { isMobile } = props;
     const [companyData, setCompanyData] = useState([]);
     const [projectData, setProjectData] = useState([]);
     const [skillList, setSkillList] = useState([]);
@@ -52,8 +53,8 @@ const AdminMain = (props) => {
             {
                 aboutData && (
                     <AdminAbout
-                        isMobile={props.isMobile}
-                        aboutData={aboutData}
+                        isMobile={isMobile}
+                        aboutDataList={aboutData}
                         reqData={reqData}
                     />
                 )
@@ -61,7 +62,7 @@ const AdminMain = (props) => {
             {
                 companyData && (
                     <AdminCompany
-                        companyData={companyData}
+                        companyDataList={companyData}
                         reqData={reqData}
                     />
                 )
@@ -70,7 +71,7 @@ const AdminMain = (props) => {
                 projectData && (
                     <AdminProject
                         companyData={companyData}
-                        projectData={projectData}
+                        projectDataList={projectData}
                         skillList={skillList}
                         reqData={reqData}
                     />

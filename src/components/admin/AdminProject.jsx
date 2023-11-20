@@ -9,7 +9,8 @@ import AdminProjectList from "components/admin/AdminProjectList";
 
 
 const AdminProject = (props) => {
-    const [projectData, setProjectData] = useState(props.projectData);
+    const { reqData, companyData, projectDataList, skillList } = props;
+    const [projectData, setProjectData] = useState(projectDataList);
     const [addData, setAddData] = useState([]);
     const [newProjectSkill, setNewProjectSkill] = useState([]);
 
@@ -107,7 +108,7 @@ const AdminProject = (props) => {
 
 
     const setCompany = () => {
-        props.companyData.map((data, idx) => {
+        companyData.map((data, idx) => {
             const newCompanyData = {
                 ...companyList[idx],
                 value: data.c_idx,
@@ -133,13 +134,13 @@ const AdminProject = (props) => {
 
     const updateProjectData = () => {
         // TODO::현재 페이지 변경시 reqData로 모든 데이터 최신화됨 추후 수정 필요
-        props.reqData(2);
+        reqData(2);
     }
 
     useEffect(() => {
-        setProjectData(props.projectData);
+        setProjectData(projectDataList);
         setCompany();
-    }, [props.projectData])
+    }, [projectDataList])
 
     return (
         <div className={styles.admProjectFrame + " admProject"}>
@@ -154,7 +155,7 @@ const AdminProject = (props) => {
                         companyList={companyList}
                         checkHandler={checkHandler}
                         newProjectSkill={newProjectSkill}
-                        skillList={props.skillList}
+                        skillList={skillList}
                         newProjectStatus
                     />
 
@@ -164,7 +165,7 @@ const AdminProject = (props) => {
                         companyList={companyList}
                         checkHandler={checkHandler}
                         newProjectSkill={newProjectSkill}
-                        skillList={props.skillList}
+                        skillList={skillList}
                         newProjectStatus={false}
                     />
 

@@ -2,7 +2,7 @@ import CustomSelect from "components/commons/CustomSelect";
 import styles from "styles/admin/AdminProject.module.css";
 
 const AdminProjectList = (props) => {
-    const { projectData, onChangeInput, companyList, checkHandler, newProjectSkill, newProjectStatus } = props;
+    const { projectData, onChangeInput, companyList, checkHandler, newProjectSkill, newProjectStatus, skillList } = props;
 
     const positionOption = [
         { value: -1, label: "Position" },
@@ -103,7 +103,7 @@ const AdminProjectList = (props) => {
                                 newProjectStatus &&
                                 <li className={styles.skillList}>
                                     {
-                                        props.skillList.map((skill) => (
+                                        skillList.map((skill) => (
                                             <div key={skill.s_idx}>
                                                 <input
                                                     type="checkbox"

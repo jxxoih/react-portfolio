@@ -7,7 +7,8 @@ import CustomSelect from "components/commons/CustomSelect";
 import { useEffect } from "react";
 
 const AdminCompany = (props) => {
-    const [companyData, setCompanyData] = useState(props.companyData)
+    const { reqData, companyDataList } = props;
+    const [companyData, setCompanyData] = useState(companyDataList)
     const [addData, setAddData] = useState([]);
 
     const empOption = [
@@ -73,13 +74,13 @@ const AdminCompany = (props) => {
 
     const updateCompanyData = () => {
         // TODO::현재 페이지 변경시 reqData로 모든 데이터 최신화됨 추후 수정 필요
-        props.reqData(1);
+        reqData(1);
         setAddData([]);
     }
 
     useEffect(() => {
-        setCompanyData(props.companyData);
-    }, [props.companyData])
+        setCompanyData(companyDataList);
+    }, [companyDataList])
 
     return (
         <div className={styles.admCompanyFrame + " admCompany"}>
@@ -90,6 +91,7 @@ const AdminCompany = (props) => {
                 <div className={styles.admCompanyContent}>
                     <ul className={styles.admCompanyList}>
                         {
+                            companyData &&
                             companyData.map((data, idx) => (
                                 <li key={idx}>
                                     <ul className={styles.dataUl}>

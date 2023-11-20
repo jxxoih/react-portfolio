@@ -1,9 +1,10 @@
 import styles from "styles/Work.module.css";
 
 const Work = (props) => {
-    const company = props.companyData;
-    const project = props.projectData;
-    const projectSkill = props.projectSkillData;
+    const { isMobile, func, companyData, projectData, projectSkillData } = props;
+    const company = companyData;
+    const project = projectData;
+    const projectSkill = projectSkillData;
 
     return (
         <div className={styles.workWrap + " work"}>
@@ -17,7 +18,7 @@ const Work = (props) => {
                     {
                         !!company &&
                         company.map((comp) => (
-                            <div className={props.isMobile ? styles.worksMobile : styles.wokrs} key={comp.c_idx}>
+                            <div className={isMobile ? styles.worksMobile : styles.wokrs} key={comp.c_idx}>
                                 <div className={styles.companyNm}>
                                     <p>
                                         {comp.company_nm}
@@ -36,7 +37,7 @@ const Work = (props) => {
                                             <p className={styles.projectTitle}>
                                                 <span
                                                     className={!!project.pro_url ? styles.setPortfolio : ""}
-                                                    onClick={(e) => props.func(project.pro_url, e)}
+                                                    onClick={(e) => func(project.pro_url, e)}
                                                 >
                                                     {project.pro_name}
                                                 </span>
@@ -44,10 +45,10 @@ const Work = (props) => {
                                             <p className={styles.work}>
                                                 {project.pro_detail}
                                                 ({project.pos_name})
-                                                {!props.isMobile && (
+                                                {!isMobile && (
                                                     <span className={styles.bar}>|</span>
                                                 )}
-                                                {props.isMobile && (
+                                                {isMobile && (
                                                     <br />
                                                 )}
                                                 {

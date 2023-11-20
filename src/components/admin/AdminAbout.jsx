@@ -6,10 +6,10 @@ import * as config from "config";
 import * as appUtill from "utills/appUtill";
 
 const AdminAbout = (props) => {
-    const { reqData } = props;
+    const { reqData, aboutDataList } = props;
 
-    const [aboutData, setAboutData] = useState(props.aboutData);
-    const [oriData, setOriData] = useState(props.aboutData);
+    const [aboutData, setAboutData] = useState(aboutDataList);
+    const [oriData, setOriData] = useState(aboutDataList);
     const [aboutChgStat, setAboutChgStat] = useState(false);
 
     const onChangeAbout = (e) => {
@@ -44,9 +44,9 @@ const AdminAbout = (props) => {
     }
 
     useEffect(() => {
-        setOriData(props.aboutData);
-        setAboutData(props.aboutData);
-    }, [props.aboutData]);
+        setOriData(aboutDataList);
+        setAboutData(aboutDataList);
+    }, [aboutDataList]);
 
     return (
         <div className={styles.aboutWrap + " admAbout"}>
