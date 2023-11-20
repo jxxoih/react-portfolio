@@ -1,16 +1,18 @@
 import "styles/customSelect.css";
 
 const CustomSelect = (props) => {
+    const {classNm, name, dataKey, onChange, value, options} = props;
+
     return (
         <select
-            className={"customSelectBox " + props.classNm}
-            name={props.name}
-            data-key={props.dataKey}
-            onChange={props.onChange}
-            defaultValue={props.value}
+            className={"customSelectBox " + classNm}
+            name={name}
+            data-key={dataKey}
+            onChange={onChange}
+            defaultValue={value}
             id="">
             {
-                props.options.map((option, idx) => (
+                options.map((option, idx) => (
                     <option
                         disabled={option.value === -1}
                         key={idx}

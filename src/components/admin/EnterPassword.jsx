@@ -1,7 +1,7 @@
 const EnterPassword = (props) => {
     const colon = " : ";
     const regex = /./gi;
-    const password = props.password;
+    const {password} = props;
 
     return (
         <div className="enterPwd">
