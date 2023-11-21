@@ -11,9 +11,13 @@ import "styles/admin.css";
 import * as config from "config";
 import * as appUtill from "utills/appUtill";
 import Admin from "components/admin/Admin";
+import LoadingPage from "components/commons/LoadingPage";
 
 function App() {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const [isAdmin, setIsAdmin] = useState(null);
 
   const [aboutData, setAboutData] = useState([]);
   const [company, setCompany] = useState([]);
@@ -90,8 +94,6 @@ function App() {
 
     return curPath;
   }
-
-  const [isAdmin, setIsAdmin] = useState(null);
   const [admPage, setAdmPage] = useState(getPage());
 
   const setPage = (status) => {
@@ -103,7 +105,7 @@ function App() {
     } else {
       navigate("/");
     }
-    
+
     scrollToY(0);
     reqData();
   }
@@ -149,54 +151,67 @@ function App() {
       window.removeEventListener('scroll', topBtn);
       window.removeEventListener('resize', handleResize);
     }
-
   }, [])
+
   return (
     <>
-      {!isMobile && (
-        <Header
-          func={gnbClick}
-          setPage={setPage}
-          admPage={admPage}
-        />
-      )}
-      {isMobile && (
-        <HeaderMobile func={gnbClick} />
-      )}
-      <Routes>
-        <Route
-          path={config.ADMIN_PATH}
-          element={
-            <Admin
-              isAdmin={isAdmin}
-              isMobile={isMobile}
-              aboutData={aboutData}
-              setAdmin={setAdminAuthrize}
-              setPage={setPage}
-            />
-          }
-        >
-        </Route>
-        <Route
-          path="/"
-          element={
-            <Main
-              isMobile={isMobile}
-              aboutData={aboutData}
-              workData={{ company, project, projectSkill }}
-              skillData={{ skillData, fieldResult }}
-            />
-          }
-        >
-        </Route>
-      </Routes>
+      {
+        isLoading && (
+          <LoadingPage />
+        )
+      }
+      {
+        !isLoading && (
+          <>
+            {!isMobile && (
+              <Header
+                func={gnbClick}
+                setPage={setPage}
+                admPage={admPage}
+              />
+            )}
+            {isMobile && (
+              <HeaderMobile func={gnbClick} />
+            )}
+            < Routes >
+              <Route
+                path={config.ADMIN_PATH}
+                element={
+                  <Admin
+                    setLoading={setIsLoading}
+                    isAdmin={isAdmin}
+                    isMobile={isMobile}
+                    aboutData={aboutData}
+                    setAdmin={setAdminAuthrize}
+                    setPage={setPage}
+                  />
+                }
+              >
+              </Route>
+              <Route
+                path="/"
+                element={
+                  <Main
+                    isMobile={isMobile}
+                    aboutData={aboutData}
+                    workData={{ company, project, projectSkill }}
+                    skillData={{ skillData, fieldResult }}
+                  />
+                }
+              >
+              </Route>
+            </Routes>
+          </>
+        )
+      }
 
-
-      {scroll && (
-        <div className="topBtn" onClick={() => scrollToY(0)} >
-          <img src={config.IMG_PATH + "topBtn.svg"} alt="TOP" />
-        </div>
-      )}
+      {
+        scroll && (
+          <div className="topBtn" onClick={() => scrollToY(0)} >
+            <img src={config.IMG_PATH + "topBtn.svg"} alt="TOP" />
+          </div>
+        )
+      }
     </>
   );
 }

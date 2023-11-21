@@ -8,14 +8,14 @@ import * as appUtill from "utills/appUtill";
 import * as config from "config";
 
 const AdminMain = (props) => {
-    const { isMobile } = props;
+    const { isMobile, setLoading } = props;
     const [companyData, setCompanyData] = useState([]);
     const [projectData, setProjectData] = useState([]);
     const [skillList, setSkillList] = useState([]);
     const [aboutData, setAboutData] = useState([]);
 
 
-    const reqData = (arg) => {
+    const reqData = async (arg) => {
         if (arg === 0) {
             appUtill.resolveData(config.GET_ABOUT_ACTION).then((resolvedData) =>
                 setAboutData(resolvedData[0])
@@ -42,9 +42,12 @@ const AdminMain = (props) => {
                 setSkillList(resolvedData)
             );
         }
+        
+        await setLoading(false);
     }
 
     useEffect(() => {
+        setLoading(true);
         reqData();
     }, []);
 

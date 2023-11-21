@@ -57,6 +57,7 @@ label::selection {
     outline: none;
     cursor: pointer;
     border-bottom: 1px dashed #8c8c8c;
+    width: 150px;
 }
 
 .admProjectList .dataUl>li:not(:last-child):hover::after {

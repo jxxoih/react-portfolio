@@ -5,7 +5,7 @@ import AdminMain from "components/admin/AdminMain";
 import * as config from "config";
 
 const Admin = (props) => {
-    const { isAdmin, isMobile, aboutData, setAdmin, setPage } = props;
+    const { isAdmin, isMobile, aboutData, setAdmin, setPage, setLoading } = props;
     const [password, setPassword] = useState("");
 
     useEffect(() => {
@@ -47,6 +47,7 @@ const Admin = (props) => {
         <>
             {isAdmin && (
                 <AdminMain
+                    setLoading={setLoading}
                     isMobile={isMobile}
                     aboutData={{
                         aboutTitle: aboutData?.p_about_title,

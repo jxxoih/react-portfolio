@@ -1,0 +1,30 @@
+.LoadingWrap {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(191, 191, 191);
+}
+
+.loader {
+    position: relative;
+}
+
+.loadingBar {
+    border:3px solid #f3f3f3;
+    border-top: 3px solid #3498db; 
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+  }
+
+  .loader > p {
+    position: absolute;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
