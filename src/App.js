@@ -178,7 +178,6 @@ function App() {
                 path={config.ADMIN_PATH}
                 element={
                   <Admin
-                    setLoading={setIsLoading}
                     isAdmin={isAdmin}
                     isMobile={isMobile}
                     aboutData={aboutData}
