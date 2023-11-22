@@ -6,14 +6,12 @@ export const reqAPI = async (action, arg) => {
     const reqPath = config.API_PATH;
 
     const data = {
-        params: {
-            p_idx: 1,
-            action: action,
-            arg: arg,
-        }
+        p_idx: 1,
+        action: action,
+        arg: arg,
     }
 
-    return await axios.post(reqPath, null, data)
+    return await axios.post(reqPath, data)
         .then((res) => res.data.data)
         .catch((err) => { console.log("err", err) })
 }
