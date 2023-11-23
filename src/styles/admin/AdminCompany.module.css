@@ -31,6 +31,7 @@
 
 .admCompanyList .dataUl {
     display: flex;
+    justify-content: space-around;
     padding: 0;
     width: calc(100% - 30px);
 }
@@ -44,6 +45,8 @@
 .admCompanyList .dataUl > li > input {
     border: none;
     background-color: var(--company-bg-color);
+    width: auto;
+    max-width: 170px;
     height: 30px;
     font-size: 1rem;
     margin: 5px 0;
