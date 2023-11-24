@@ -8,7 +8,14 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import "styles/common.css";
 import "styles/admin.css";
 
-import * as config from "config";
+import {
+  GNB_LIST,
+  ADMIN_AUTHORITY_EXPIRE_TIME,
+  ADMIN_PATH,
+  MOBILE_PX,
+  IMG_PATH,
+  API_ACTIONS
+} from "config";
 import * as appUtill from "utills/appUtill";
 import Admin from "components/admin/Admin";
 import LoadingPage from "components/commons/LoadingPage";
@@ -31,7 +38,7 @@ function App() {
   const [scroll, setScroll] = useState(false);
 
   const gnbClick = (e) => {
-    let targetY = document.querySelector("." + config.GNB_LIST[e]).getBoundingClientRect().y;
+    let targetY = document.querySelector("." + GNB_LIST[e]).getBoundingClientRect().y;
 
     scrollToY(y + targetY)
   }
@@ -44,12 +51,12 @@ function App() {
   }
 
   const reqData = () => {
-    appUtill.resolveData(config.GET_ABOUT_ACTION).then((resolvedData) => setAboutData(resolvedData[0]));
-    appUtill.resolveData(config.GET_COMPANY_ACTION).then((resolvedData) => setCompany(resolvedData));
-    appUtill.resolveData(config.GET_PROJECT_ACTION).then((resolvedData) => setProject(resolvedData));
-    appUtill.resolveData(config.GET_PROJECT_GET_SKILL_ACTION).then((resolvedData) => setProjectSkill(resolvedData));
-    appUtill.resolveData(config.GET_SKILL_ACTION).then((resolvedData) => setSkillData(resolvedData));
-    appUtill.resolveData(config.GET_SKILL_FIELD_ACTION).then((resolvedData) => setFieldResult(resolvedData));
+    appUtill.resolveData(API_ACTIONS.GET_ABOUT_ACTION).then((resolvedData) => setAboutData(resolvedData[0]));
+    appUtill.resolveData(API_ACTIONS.GET_COMPANY_ACTION).then((resolvedData) => setCompany(resolvedData));
+    appUtill.resolveData(API_ACTIONS.GET_PROJECT_ACTION).then((resolvedData) => setProject(resolvedData));
+    appUtill.resolveData(API_ACTIONS.GET_PROJECT_GET_SKILL_ACTION).then((resolvedData) => setProjectSkill(resolvedData));
+    appUtill.resolveData(API_ACTIONS.GET_SKILL_ACTION).then((resolvedData) => setSkillData(resolvedData));
+    appUtill.resolveData(API_ACTIONS.GET_SKILL_FIELD_ACTION).then((resolvedData) => setFieldResult(resolvedData));
   }
 
 
@@ -59,7 +66,7 @@ function App() {
 
     const obj = {
       value: keyName,
-      expire: Date.now() + config.ADMIN_AUTHORITY_EXPIRE_TIME
+      expire: Date.now() + ADMIN_AUTHORITY_EXPIRE_TIME
     }
 
     const objString = JSON.stringify(obj);
@@ -100,7 +107,7 @@ function App() {
     setAdmPage(status);
 
     if (status) {
-      navigate(config.ADMIN_PATH);
+      navigate(ADMIN_PATH);
       setIsAdmin(getAdminAuthrizeExpireTime());
     } else {
       navigate("/");
@@ -124,7 +131,7 @@ function App() {
 
     function handleResize() {
       let width = window.innerWidth;
-      if (width <= config.MOBILE_PX) {
+      if (width <= MOBILE_PX) {
         setIsMobile(true);
       } else {
         setIsMobile(false);
@@ -175,7 +182,7 @@ function App() {
             )}
             < Routes >
               <Route
-                path={config.ADMIN_PATH}
+                path={ADMIN_PATH}
                 element={
                   <Admin
                     isAdmin={isAdmin}
@@ -207,7 +214,7 @@ function App() {
       {
         scroll && (
           <div className="topBtn" onClick={() => scrollToY(0)} >
-            <img src={config.IMG_PATH + "topBtn.svg"} alt="TOP" />
+            <img src={IMG_PATH + "topBtn.svg"} alt="TOP" />
           </div>
         )
       }

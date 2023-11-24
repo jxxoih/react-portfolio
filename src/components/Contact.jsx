@@ -1,13 +1,13 @@
-import * as config from "config";
+import { IMG_PATH } from "config";
 
 import styles from "styles/Contact.module.css";
 
 
 
-const emailImg = config.IMG_PATH + "email.png";
+const emailImg = IMG_PATH + "email.png";
 
 const Contact = (props) => {
-    const {email} = props;
+    const { email } = props;
 
     return (
         <div className={styles.contactWrap + " contact"}>

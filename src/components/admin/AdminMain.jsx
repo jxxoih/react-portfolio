@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 
 import * as appUtill from "utills/appUtill";
-import * as config from "config";
+import { API_ACTIONS } from "config";
 import LoadingPage from "components/commons/LoadingPage";
 
 const AdminMain = (props) => {
@@ -18,28 +18,28 @@ const AdminMain = (props) => {
 
     const reqData = async (arg) => {
         if (arg === 0) {
-            await appUtill.resolveData(config.GET_ABOUT_ACTION).then((resolvedData) =>
+            await appUtill.resolveData(API_ACTIONS.GET_ABOUT_ACTION).then((resolvedData) =>
                 setAboutData(resolvedData[0])
             );
         } else if (arg === 1) {
-            await appUtill.resolveData(config.GET_ADMIN_COMPANY_ACTION).then((resolvedData) =>
+            await appUtill.resolveData(API_ACTIONS.GET_ADMIN_COMPANY_ACTION).then((resolvedData) =>
                 setCompanyData(resolvedData)
             );
         } else if (arg === 2) {
-            await appUtill.resolveData(config.GET_ADMIN_PROJECT_ACTION).then((resolvedData) =>
+            await appUtill.resolveData(API_ACTIONS.GET_ADMIN_PROJECT_ACTION).then((resolvedData) =>
                 setProjectData(resolvedData)
             );
         } else {
-            await appUtill.resolveData(config.GET_ABOUT_ACTION).then((resolvedData) =>
+            await appUtill.resolveData(API_ACTIONS.GET_ABOUT_ACTION).then((resolvedData) =>
                 setAboutData(resolvedData[0])
             );
-            await appUtill.resolveData(config.GET_ADMIN_COMPANY_ACTION).then((resolvedData) =>
+            await appUtill.resolveData(API_ACTIONS.GET_ADMIN_COMPANY_ACTION).then((resolvedData) =>
                 setCompanyData(resolvedData)
             );
-            await appUtill.resolveData(config.GET_ADMIN_PROJECT_ACTION).then((resolvedData) =>
+            await appUtill.resolveData(API_ACTIONS.GET_ADMIN_PROJECT_ACTION).then((resolvedData) =>
                 setProjectData(resolvedData)
             );
-            await appUtill.resolveData(config.GET_SKILL_LIST).then((resolvedData) =>
+            await appUtill.resolveData(API_ACTIONS.GET_SKILL_LIST).then((resolvedData) =>
                 setSkillList(resolvedData)
             );
         }

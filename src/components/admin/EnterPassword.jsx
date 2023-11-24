@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import * as config from "config";
+import { ADMIN_PASSWORD } from "config";
 import { useRef } from "react";
 
 const EnterPassword = (props) => {
@@ -27,7 +27,7 @@ const EnterPassword = (props) => {
         // 숫자, 문자만 입력 가능
         if (checkCode === 13 || (checkCode >= 48 && checkCode <= 57) || (checkCode >= 65 && checkCode <= 90) || (checkCode >= 96 && checkCode <= 107)) {
             if (e.key === "Enter") {
-                if (pwd === config.ADMIN_PASSWORD) {
+                if (pwd === ADMIN_PASSWORD) {
                     setAdmin(true);
                     setPage(true);
                     e.preventDefault();

@@ -3,9 +3,9 @@ import { useEffect } from "react";
 import { useState } from "react";
 import styles from "styles/admin/AdminProject.module.css";
 
-import * as config from "config";
 import * as appUtill from "utills/appUtill";
 import AdminProjectList from "components/admin/AdminProjectList";
+import { API_ACTIONS } from "config";
 
 
 const AdminProject = (props) => {
@@ -121,11 +121,11 @@ const AdminProject = (props) => {
     }
 
     const editProject = async () => {
-        await appUtill.resolveData(config.UPDATE_PROJECT, { projectData, newProjectSkill }).then((resolvedData) =>
+        await appUtill.resolveData(API_ACTIONS.UPDATE_PROJECT, { projectData, newProjectSkill }).then((resolvedData) =>
             setProjectData(projectData)
         );
         if (addData.length > 0) {
-            appUtill.resolveData(config.INSERT_NEW_PROJECT, addData);
+            appUtill.resolveData(API_ACTIONS.INSERT_NEW_PROJECT, addData);
         }
         await updateProjectData();
         setAddData([]);

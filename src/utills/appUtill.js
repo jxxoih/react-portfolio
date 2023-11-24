@@ -1,9 +1,9 @@
 import axios from 'axios';
-import * as config from "config";
+import { API_PATH } from "config";
 
 // node 서버 통신 API 모듈
 export const reqAPI = async (action, arg) => {
-    const reqPath = config.API_PATH;
+    const reqPath = API_PATH;
 
     const data = {
         p_idx: 1,

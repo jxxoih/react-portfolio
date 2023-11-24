@@ -1,9 +1,9 @@
 import styles from "styles/Skill.module.css";
 
-import * as config from "config";
+import { IMG_PATH } from "config";
 
 const Skill = (props) => {
-    const {isMobile, func, skillDataList} = props;
+    const { isMobile, func, skillDataList } = props;
     const { fieldResult, skillData } = skillDataList;
 
     return (
@@ -24,7 +24,7 @@ const Skill = (props) => {
                                         skillData.map((data) => (
                                             data.sf_idx == field.sf_idx &&
                                             <li
-                                                style={{ backgroundImage: `url(${config.IMG_PATH + data.s_img})` }}
+                                                style={{ backgroundImage: `url(${IMG_PATH + data.s_img})` }}
                                                 key={data.s_idx}
                                                 className={data?.s_idx === 12 ? styles.setUrl : ""}
                                                 onClick={data.s_idx === 12 ? (e) => func(`https://github.com/${data.p_github}`, e) : console.log()}

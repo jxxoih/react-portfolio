@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import styles from "styles/admin/AdminAbout.module.css";
 
-import * as config from "config";
 import * as appUtill from "utills/appUtill";
+import { API_ACTIONS } from "config";
 
 const AdminAbout = (props) => {
     const { reqData, aboutDataList } = props;
@@ -31,7 +31,7 @@ const AdminAbout = (props) => {
 
     const updateAbout = async () => {
         if (aboutChgStat) {
-            await appUtill.resolveData(config.UPDATE_ABOUT, aboutData).then((resolvedData) => {
+            await appUtill.resolveData(API_ACTIONS.UPDATE_ABOUT, aboutData).then((resolvedData) => {
                 setOriData(aboutData)
             }
             );

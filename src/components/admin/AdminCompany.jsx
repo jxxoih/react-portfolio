@@ -5,6 +5,7 @@ import * as config from "config";
 import * as appUtill from "utills/appUtill";
 import CustomSelect from "components/commons/CustomSelect";
 import { useEffect } from "react";
+import { API_ACTIONS } from "config";
 
 const AdminCompany = (props) => {
     const { reqData, companyDataList } = props;
@@ -61,12 +62,12 @@ const AdminCompany = (props) => {
     }
 
     const editCompany = () => {
-        appUtill.resolveData(config.UPDATE_COMPANY, companyData).then((resolvedData) =>
+        appUtill.resolveData(API_ACTIONS.UPDATE_COMPANY, companyData).then((resolvedData) =>
             setCompanyData(companyData)
         );
 
         if (addData.length > 0) {
-            appUtill.resolveData(config.INSERT_NEW_COMPANY, addData).then((resolvedData) =>
+            appUtill.resolveData(API_ACTIONS.INSERT_NEW_COMPANY, addData).then((resolvedData) =>
                 updateCompanyData()
             );
         }
