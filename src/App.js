@@ -23,6 +23,7 @@ import LoadingPage from "components/commons/LoadingPage";
 function App() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const [underMnt, setUnderMnt] = useState(false);
 
   const [isAdmin, setIsAdmin] = useState(null);
 
@@ -51,7 +52,10 @@ function App() {
   }
 
   const reqData = () => {
-    appUtill.resolveData(API_ACTIONS.GET_ABOUT_ACTION).then((resolvedData) => setAboutData(resolvedData[0]));
+    appUtill.resolveData(API_ACTIONS.GET_ABOUT_ACTION).then((resolvedData) => {
+      setAboutData(resolvedData[0]);
+      setUnderMnt(!!!resolvedData[0].sm_state);
+    });
     appUtill.resolveData(API_ACTIONS.GET_COMPANY_ACTION).then((resolvedData) => setCompany(resolvedData));
     appUtill.resolveData(API_ACTIONS.GET_PROJECT_ACTION).then((resolvedData) => setProject(resolvedData));
     appUtill.resolveData(API_ACTIONS.GET_PROJECT_GET_SKILL_ACTION).then((resolvedData) => setProjectSkill(resolvedData));
@@ -162,62 +166,72 @@ function App() {
 
   return (
     <>
-      {
-        isLoading && (
-          <LoadingPage />
-        )
-      }
-      {
-        !isLoading && (
-          <>
-            {!isMobile && (
-              <Header
-                func={gnbClick}
-                setPage={setPage}
-                admPage={admPage}
-              />
-            )}
-            {isMobile && (
-              <HeaderMobile func={gnbClick} />
-            )}
-            < Routes >
-              <Route
-                path={ADMIN_PATH}
-                element={
-                  <Admin
-                    isAdmin={isAdmin}
-                    isMobile={isMobile}
-                    aboutData={aboutData}
-                    setAdmin={setAdminAuthrize}
-                    setPage={setPage}
-                  />
-                }
-              >
-              </Route>
-              <Route
-                path="/"
-                element={
-                  <Main
-                    isMobile={isMobile}
-                    aboutData={aboutData}
-                    workData={{ company, project, projectSkill }}
-                    skillData={{ skillData, fieldResult }}
-                  />
-                }
-              >
-              </Route>
-            </Routes>
-          </>
-        )
-      }
+      {underMnt && (
+        <div>
+          점검중
+        </div>
+      )}
 
-      {
-        scroll && (
-          <div className="topBtn" onClick={() => scrollToY(0)} >
-            <img src={IMG_PATH + "topBtn.svg"} alt="TOP" />
-          </div>
-        )
-      }
+      {!underMnt && (
+        <>
+          {
+            isLoading && (
+              <LoadingPage />
+            )
+          }
+          {
+            !isLoading && (
+              <>
+                {!isMobile && (
+                  <Header
+                    func={gnbClick}
+                    setPage={setPage}
+                    admPage={admPage}
+                  />
+                )}
+                {isMobile && (
+                  <HeaderMobile func={gnbClick} />
+                )}
+                < Routes >
+                  <Route
+                    path={ADMIN_PATH}
+                    element={
+                      <Admin
+                        isAdmin={isAdmin}
+                        isMobile={isMobile}
+                        aboutData={aboutData}
+                        setAdmin={setAdminAuthrize}
+                        setPage={setPage}
+                      />
+                    }
+                  >
+                  </Route>
+                  <Route
+                    path="/"
+                    element={
+                      <Main
+                        isMobile={isMobile}
+                        aboutData={aboutData}
+                        workData={{ company, project, projectSkill }}
+                        skillData={{ skillData, fieldResult }}
+                      />
+                    }
+                  >
+                  </Route>
+                </Routes>
+              </>
+            )
+          }
+
+          {
+            scroll && (
+              <div className="topBtn" onClick={() => scrollToY(0)} >
+                <img src={IMG_PATH + "topBtn.svg"} alt="TOP" />
+              </div>
+            )
+          }
+        </>
+      )}
     </>
   );
 }
