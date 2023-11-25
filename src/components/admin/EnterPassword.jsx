@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import { ADMIN_PASSWORD } from "config";
+import { API_ACTIONS } from "config";
 import { useRef } from "react";
+import * as appUtill from "utills/appUtill";
 
 const EnterPassword = (props) => {
     const colon = " : ";
@@ -9,6 +10,8 @@ const EnterPassword = (props) => {
     const { setAdmin, setPage, isAdmin } = props;
 
     const [password, setPassword] = useState("");
+    const ADMIN_AUTH_PWD = useRef("");
+
     var pwd = "";
     const enterPwd = useRef("");
 
@@ -25,9 +28,10 @@ const EnterPassword = (props) => {
     const passwordKeyDown = (e) => {
         const checkCode = e.keyCode;
         // 숫자, 문자만 입력 가능
+
         if (checkCode === 13 || (checkCode >= 48 && checkCode <= 57) || (checkCode >= 65 && checkCode <= 90) || (checkCode >= 96 && checkCode <= 107)) {
             if (e.key === "Enter") {
-                if (pwd === ADMIN_PASSWORD) {
+                if (pwd === ADMIN_AUTH_PWD.current) {
                     setAdmin(true);
                     setPage(true);
                     e.preventDefault();
@@ -43,7 +47,13 @@ const EnterPassword = (props) => {
         }
     }
 
+    const getAuthPwd = async () => {
+        await appUtill.resolveData(API_ACTIONS.GET_AUTH_PWD).then((resolvedData) => ADMIN_AUTH_PWD.current = resolvedData[0].authPwd);
+    }
+
     useEffect(() => {
+        getAuthPwd();
+
         if (isAdmin) {
             setAdmin(true);
             setEnteredPwd("");
