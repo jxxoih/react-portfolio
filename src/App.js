@@ -168,7 +168,10 @@ function App() {
   return (
     <>
       {underMnt && (
-        <InspectionPage />
+        <InspectionPage
+        title={aboutData.sm_title}
+        context={aboutData.sm_context}
+        />
       )}
 
       {!underMnt && (
