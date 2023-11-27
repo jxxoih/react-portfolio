@@ -19,6 +19,7 @@ import {
 import * as appUtill from "utills/appUtill";
 import Admin from "components/admin/Admin";
 import LoadingPage from "components/commons/LoadingPage";
+import InspectionPage from "components/commons/InspectionPage";
 
 function App() {
   const navigate = useNavigate();
@@ -167,9 +168,7 @@ function App() {
   return (
     <>
       {underMnt && (
-        <div>
-          점검중
-        </div>
+        <InspectionPage />
       )}
 
       {!underMnt && (

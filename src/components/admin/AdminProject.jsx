@@ -1,7 +1,7 @@
 import CustomSelect from "components/commons/CustomSelect";
 import { useEffect } from "react";
 import { useState } from "react";
-import styles from "styles/admin/AdminProject.module.css";
+import styles from "styles/admin/modules/AdminProject.module.css";
 
 import * as appUtill from "utills/appUtill";
 import AdminProjectList from "components/admin/AdminProjectList";

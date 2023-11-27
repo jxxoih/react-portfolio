@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import styles from "styles/admin/AdminAbout.module.css";
+import styles from "styles/admin/modules/AdminAbout.module.css";
 
 import * as appUtill from "utills/appUtill";
 import { API_ACTIONS } from "config";

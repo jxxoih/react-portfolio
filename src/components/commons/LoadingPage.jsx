@@ -1,4 +1,4 @@
-import styles from "styles/Loading.module.css";
+import styles from "styles/modules/Loading.module.css";
 
 import * as config from "config";
 

@@ -1,4 +1,4 @@
-import styles from "styles/Skill.module.css";
+import styles from "styles/modules/Skill.module.css";
 
 import { IMG_PATH } from "config";
 

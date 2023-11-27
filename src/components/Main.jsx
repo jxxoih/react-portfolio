@@ -1,4 +1,4 @@
-import styles from "styles/Main.module.css";
+import styles from "styles/modules/Main.module.css";
 
 import About from "components/About.jsx";
 import Work from "components/Work";
@@ -6,9 +6,6 @@ import Skill from "components/Skill";
 import Contact from "components/Contact";
 import { useState } from "react";
 import { useEffect } from "react";
-
-import * as appUtill from "utills/appUtill";
-import * as config from "config";
 
 const mainText = "개발자 강지호입니다.";
 

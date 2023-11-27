@@ -1,6 +1,6 @@
 import { IMG_PATH } from "config";
 
-import styles from "styles/Contact.module.css";
+import styles from "styles/modules/Contact.module.css";
 
 
 

@@ -1,5 +1,5 @@
 import CustomSelect from "components/commons/CustomSelect";
-import styles from "styles/admin/AdminProject.module.css";
+import styles from "styles/admin/modules/AdminProject.module.css";
 
 const AdminProjectList = (props) => {
     const { projectData, onChangeInput, companyList, checkHandler, newProjectSkill, newProjectStatus, skillList } = props;

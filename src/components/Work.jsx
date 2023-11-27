@@ -1,4 +1,4 @@
-import styles from "styles/Work.module.css";
+import styles from "styles/modules/Work.module.css";
 
 const Work = (props) => {
     const { isMobile, func, companyData, projectData, projectSkillData } = props;

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "styles/admin/AdminCompany.module.css";
+import styles from "styles/admin/modules/AdminCompany.module.css";
 
 import * as config from "config";
 import * as appUtill from "utills/appUtill";
