@@ -7,7 +7,7 @@ import * as appUtill from "utills/appUtill";
 const EnterPassword = (props) => {
     const colon = " : ";
     const regex = /./gi;
-    const { setAdmin, setPage, isAdmin } = props;
+    const { setAdmin, setPage, isAdmin, setUnderMnt } = props;
 
     const [password, setPassword] = useState("");
     const ADMIN_AUTH_PWD = useRef("");
@@ -48,7 +48,11 @@ const EnterPassword = (props) => {
     }
 
     const getAuthPwd = async () => {
-        await appUtill.resolveData(API_ACTIONS.GET_AUTH_PWD).then((resolvedData) => ADMIN_AUTH_PWD.current = resolvedData[0].authPwd);
+        await appUtill.resolveData(API_ACTIONS.GET_AUTH_PWD)
+            .then((resolvedData) => ADMIN_AUTH_PWD.current = resolvedData[0].authPwd)
+            .catch(() => {
+                setUnderMnt(true);
+            });
     }
 
     useEffect(() => {

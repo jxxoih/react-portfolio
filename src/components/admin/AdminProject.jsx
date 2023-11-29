@@ -9,7 +9,7 @@ import { API_ACTIONS } from "config";
 
 
 const AdminProject = (props) => {
-    const { reqData, companyData, projectDataList, skillList } = props;
+    const { reqData, companyData, projectDataList, skillList,setUnderMnt } = props;
     const [projectData, setProjectData] = useState(projectDataList);
     const [addData, setAddData] = useState([]);
     const [newProjectSkill, setNewProjectSkill] = useState([]);
@@ -123,7 +123,9 @@ const AdminProject = (props) => {
     const editProject = async () => {
         await appUtill.resolveData(API_ACTIONS.UPDATE_PROJECT, { projectData, newProjectSkill }).then((resolvedData) =>
             setProjectData(projectData)
-        );
+        ).catch(() => {
+            setUnderMnt(true);
+        });
         if (addData.length > 0) {
             appUtill.resolveData(API_ACTIONS.INSERT_NEW_PROJECT, addData);
         }
