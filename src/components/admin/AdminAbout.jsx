@@ -6,7 +6,7 @@ import * as appUtill from "utills/appUtill";
 import { API_ACTIONS } from "config";
 
 const AdminAbout = (props) => {
-    const { reqData, aboutDataList } = props;
+    const { reqData, aboutDataList, setUnderMnt } = props;
 
     const [aboutData, setAboutData] = useState(aboutDataList);
     const [oriData, setOriData] = useState(aboutDataList);
@@ -33,8 +33,9 @@ const AdminAbout = (props) => {
         if (aboutChgStat) {
             await appUtill.resolveData(API_ACTIONS.UPDATE_ABOUT, aboutData).then((resolvedData) => {
                 setOriData(aboutData)
-            }
-            );
+            }).catch(() => {
+                setUnderMnt(true);
+            });
         } else {
             return;
         }

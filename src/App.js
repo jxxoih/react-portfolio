@@ -56,12 +56,29 @@ function App() {
     appUtill.resolveData(API_ACTIONS.GET_ABOUT_ACTION).then((resolvedData) => {
       setAboutData(resolvedData[0]);
       setUnderMnt(!!!resolvedData[0].sm_state);
+    }).catch(() => {
+      setUnderMnt(true);
     });
-    appUtill.resolveData(API_ACTIONS.GET_COMPANY_ACTION).then((resolvedData) => setCompany(resolvedData));
-    appUtill.resolveData(API_ACTIONS.GET_PROJECT_ACTION).then((resolvedData) => setProject(resolvedData));
-    appUtill.resolveData(API_ACTIONS.GET_PROJECT_GET_SKILL_ACTION).then((resolvedData) => setProjectSkill(resolvedData));
-    appUtill.resolveData(API_ACTIONS.GET_SKILL_ACTION).then((resolvedData) => setSkillData(resolvedData));
-    appUtill.resolveData(API_ACTIONS.GET_SKILL_FIELD_ACTION).then((resolvedData) => setFieldResult(resolvedData));
+    appUtill.resolveData(API_ACTIONS.GET_COMPANY_ACTION).then((resolvedData) => setCompany(resolvedData))
+    .catch(() => {
+      setUnderMnt(true);
+    });
+    appUtill.resolveData(API_ACTIONS.GET_PROJECT_ACTION).then((resolvedData) => setProject(resolvedData))
+    .catch(() => {
+      setUnderMnt(true);
+    });
+    appUtill.resolveData(API_ACTIONS.GET_PROJECT_GET_SKILL_ACTION).then((resolvedData) => setProjectSkill(resolvedData))
+    .catch(() => {
+      setUnderMnt(true);
+    });
+    appUtill.resolveData(API_ACTIONS.GET_SKILL_ACTION).then((resolvedData) => setSkillData(resolvedData))
+    .catch(() => {
+      setUnderMnt(true);
+    });
+    appUtill.resolveData(API_ACTIONS.GET_SKILL_FIELD_ACTION).then((resolvedData) => setFieldResult(resolvedData))
+    .catch(() => {
+      setUnderMnt(true);
+    });
   }
 
 
@@ -169,8 +186,8 @@ function App() {
     <>
       {underMnt && (
         <InspectionPage
-        title={aboutData.sm_title}
-        context={aboutData.sm_context}
+          title={aboutData.sm_title}
+          context={aboutData.sm_context}
         />
       )}
 
@@ -204,6 +221,7 @@ function App() {
                         aboutData={aboutData}
                         setAdmin={setAdminAuthrize}
                         setPage={setPage}
+                        setUnderMnt={setUnderMnt}
                       />
                     }
                   >
