@@ -14,7 +14,9 @@ import {
   ADMIN_PATH,
   MOBILE_PX,
   IMG_PATH,
-  API_ACTIONS
+  API_ACTIONS,
+  ADMIN_KEY_NAME,
+  ROOT_PATH
 } from "config";
 import * as appUtill from "utills/appUtill";
 import Admin from "components/admin/Admin";
@@ -60,31 +62,31 @@ function App() {
       setUnderMnt(true);
     });
     appUtill.resolveData(API_ACTIONS.GET_COMPANY_ACTION).then((resolvedData) => setCompany(resolvedData))
-    .catch(() => {
-      setUnderMnt(true);
-    });
+      .catch(() => {
+        setUnderMnt(true);
+      });
     appUtill.resolveData(API_ACTIONS.GET_PROJECT_ACTION).then((resolvedData) => setProject(resolvedData))
-    .catch(() => {
-      setUnderMnt(true);
-    });
+      .catch(() => {
+        setUnderMnt(true);
+      });
     appUtill.resolveData(API_ACTIONS.GET_PROJECT_GET_SKILL_ACTION).then((resolvedData) => setProjectSkill(resolvedData))
-    .catch(() => {
-      setUnderMnt(true);
-    });
+      .catch(() => {
+        setUnderMnt(true);
+      });
     appUtill.resolveData(API_ACTIONS.GET_SKILL_ACTION).then((resolvedData) => setSkillData(resolvedData))
-    .catch(() => {
-      setUnderMnt(true);
-    });
+      .catch(() => {
+        setUnderMnt(true);
+      });
     appUtill.resolveData(API_ACTIONS.GET_SKILL_FIELD_ACTION).then((resolvedData) => setFieldResult(resolvedData))
-    .catch(() => {
-      setUnderMnt(true);
-    });
+      .catch(() => {
+        setUnderMnt(true);
+      });
   }
 
 
 
   const setAdminAuthrizeExpireTime = () => {
-    const keyName = "isAdmin";
+    const keyName = ADMIN_KEY_NAME;
 
     const obj = {
       value: keyName,
@@ -98,7 +100,7 @@ function App() {
     return true;
   }
   const getAdminAuthrizeExpireTime = () => {
-    const keyName = "isAdmin";
+    const keyName = ADMIN_KEY_NAME;
 
     const objString = window.localStorage.getItem(keyName);
 
@@ -127,12 +129,16 @@ function App() {
 
   const setPage = (status) => {
     setAdmPage(status);
+    if (underMnt) {
+      navigate(ROOT_PATH);
+      return;
+    }
 
     if (status) {
       navigate(ADMIN_PATH);
       setIsAdmin(getAdminAuthrizeExpireTime());
     } else {
-      navigate("/");
+      navigate(ROOT_PATH);
     }
 
     scrollToY(0);
@@ -186,8 +192,8 @@ function App() {
     <>
       {underMnt && (
         <InspectionPage
-          title={aboutData.sm_title}
-          context={aboutData.sm_context}
+          title={aboutData?.sm_title}
+          context={aboutData?.sm_context}
         />
       )}
 
@@ -227,7 +233,7 @@ function App() {
                   >
                   </Route>
                   <Route
-                    path="/"
+                    path={ROOT_PATH}
                     element={
                       <Main
                         isMobile={isMobile}
