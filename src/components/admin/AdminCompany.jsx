@@ -62,14 +62,14 @@ const AdminCompany = (props) => {
     }
 
     const editCompany = () => {
-        appUtill.resolveData(API_ACTIONS.UPDATE_COMPANY, companyData).then((resolvedData) =>
+        appUtill.resolvePostData(API_ACTIONS.UPDATE_COMPANY, companyData).then((resolvedData) =>
             setCompanyData(companyData)
         ).catch(() => {
             setUnderMnt(true);
         });
 
         if (addData.length > 0) {
-            appUtill.resolveData(API_ACTIONS.INSERT_NEW_COMPANY, addData).then((resolvedData) =>
+            appUtill.resolvePostData(API_ACTIONS.INSERT_NEW_COMPANY, addData).then((resolvedData) =>
                 updateCompanyData()
             ).catch(() => {
                 setUnderMnt(true);

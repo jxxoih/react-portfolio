@@ -48,7 +48,7 @@ const EnterPassword = (props) => {
     }
 
     const getAuthPwd = async () => {
-        await appUtill.resolveData(API_ACTIONS.GET_AUTH_PWD)
+        await appUtill.resolveGetData(API_ACTIONS.GET_AUTH_PWD)
             .then((resolvedData) => ADMIN_AUTH_PWD.current = resolvedData[0].authPwd)
             .catch(() => {
                 setUnderMnt(true);
