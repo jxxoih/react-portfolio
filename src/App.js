@@ -55,29 +55,29 @@ function App() {
   }
 
   const reqData = () => {
-    appUtill.resolveData(API_ACTIONS.GET_ABOUT_ACTION).then((resolvedData) => {
+    appUtill.resolveGetData(API_ACTIONS.GET_ABOUT_ACTION).then((resolvedData) => {
       setAboutData(resolvedData[0]);
       setUnderMnt(!!!resolvedData[0].sm_state);
     }).catch(() => {
       setUnderMnt(true);
     });
-    appUtill.resolveData(API_ACTIONS.GET_COMPANY_ACTION).then((resolvedData) => setCompany(resolvedData))
+    appUtill.resolveGetData(API_ACTIONS.GET_COMPANY_ACTION).then((resolvedData) => setCompany(resolvedData))
       .catch(() => {
         setUnderMnt(true);
       });
-    appUtill.resolveData(API_ACTIONS.GET_PROJECT_ACTION).then((resolvedData) => setProject(resolvedData))
+    appUtill.resolveGetData(API_ACTIONS.GET_PROJECT_ACTION).then((resolvedData) => setProject(resolvedData))
       .catch(() => {
         setUnderMnt(true);
       });
-    appUtill.resolveData(API_ACTIONS.GET_PROJECT_GET_SKILL_ACTION).then((resolvedData) => setProjectSkill(resolvedData))
+    appUtill.resolveGetData(API_ACTIONS.GET_PROJECT_GET_SKILL_ACTION).then((resolvedData) => setProjectSkill(resolvedData))
       .catch(() => {
         setUnderMnt(true);
       });
-    appUtill.resolveData(API_ACTIONS.GET_SKILL_ACTION).then((resolvedData) => setSkillData(resolvedData))
+    appUtill.resolveGetData(API_ACTIONS.GET_SKILL_ACTION).then((resolvedData) => setSkillData(resolvedData))
       .catch(() => {
         setUnderMnt(true);
       });
-    appUtill.resolveData(API_ACTIONS.GET_SKILL_FIELD_ACTION).then((resolvedData) => setFieldResult(resolvedData))
+    appUtill.resolveGetData(API_ACTIONS.GET_SKILL_FIELD_ACTION).then((resolvedData) => setFieldResult(resolvedData))
       .catch(() => {
         setUnderMnt(true);
       });

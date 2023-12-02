@@ -121,13 +121,13 @@ const AdminProject = (props) => {
     }
 
     const editProject = async () => {
-        await appUtill.resolveData(API_ACTIONS.UPDATE_PROJECT, { projectData, newProjectSkill }).then((resolvedData) =>
+        await appUtill.resolvePostData(API_ACTIONS.UPDATE_PROJECT, { projectData, newProjectSkill }).then((resolvedData) =>
             setProjectData(projectData)
         ).catch(() => {
             setUnderMnt(true);
         });
         if (addData.length > 0) {
-            appUtill.resolveData(API_ACTIONS.INSERT_NEW_PROJECT, addData);
+            appUtill.resolvePostData(API_ACTIONS.INSERT_NEW_PROJECT, addData);
         }
         await updateProjectData();
         setAddData([]);

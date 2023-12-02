@@ -18,40 +18,40 @@ const AdminMain = (props) => {
 
     const reqData = async (arg) => {
         if (arg === 0) {
-            await appUtill.resolveData(API_ACTIONS.GET_ABOUT_ACTION).then((resolvedData) =>
+            await appUtill.resolveGetData(API_ACTIONS.GET_ABOUT_ACTION).then((resolvedData) =>
                 setAboutData(resolvedData[0])
             ).catch(() => {
                 setUnderMnt(true);
             });
         } else if (arg === 1) {
-            await appUtill.resolveData(API_ACTIONS.GET_ADMIN_COMPANY_ACTION).then((resolvedData) =>
+            await appUtill.resolveGetData(API_ACTIONS.GET_ADMIN_COMPANY_ACTION).then((resolvedData) =>
                 setCompanyData(resolvedData)
             ).catch(() => {
                 setUnderMnt(true);
             });
         } else if (arg === 2) {
-            await appUtill.resolveData(API_ACTIONS.GET_ADMIN_PROJECT_ACTION).then((resolvedData) =>
+            await appUtill.resolveGetData(API_ACTIONS.GET_ADMIN_PROJECT_ACTION).then((resolvedData) =>
                 setProjectData(resolvedData)
             ).catch(() => {
                 setUnderMnt(true);
             });
         } else {
-            await appUtill.resolveData(API_ACTIONS.GET_ABOUT_ACTION).then((resolvedData) =>
+            await appUtill.resolveGetData(API_ACTIONS.GET_ABOUT_ACTION).then((resolvedData) =>
                 setAboutData(resolvedData[0])
             ).catch(() => {
                 setUnderMnt(true);
             });
-            await appUtill.resolveData(API_ACTIONS.GET_ADMIN_COMPANY_ACTION).then((resolvedData) =>
+            await appUtill.resolveGetData(API_ACTIONS.GET_ADMIN_COMPANY_ACTION).then((resolvedData) =>
                 setCompanyData(resolvedData)
             ).catch(() => {
                 setUnderMnt(true);
             });
-            await appUtill.resolveData(API_ACTIONS.GET_ADMIN_PROJECT_ACTION).then((resolvedData) =>
+            await appUtill.resolveGetData(API_ACTIONS.GET_ADMIN_PROJECT_ACTION).then((resolvedData) =>
                 setProjectData(resolvedData)
             ).catch(() => {
                 setUnderMnt(true);
             });
-            await appUtill.resolveData(API_ACTIONS.GET_SKILL_LIST).then((resolvedData) =>
+            await appUtill.resolveGetData(API_ACTIONS.GET_SKILL_LIST).then((resolvedData) =>
                 setSkillList(resolvedData)
             ).catch(() => {
                 setUnderMnt(true);

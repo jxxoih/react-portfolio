@@ -31,7 +31,7 @@ const AdminAbout = (props) => {
 
     const updateAbout = async () => {
         if (aboutChgStat) {
-            await appUtill.resolveData(API_ACTIONS.UPDATE_ABOUT, aboutData).then((resolvedData) => {
+            await appUtill.resolvePostData(API_ACTIONS.UPDATE_ABOUT, aboutData).then((resolvedData) => {
                 setOriData(aboutData)
             }).catch(() => {
                 setUnderMnt(true);
