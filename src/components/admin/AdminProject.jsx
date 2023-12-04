@@ -1,4 +1,3 @@
-import CustomSelect from "components/commons/CustomSelect";
 import { useEffect } from "react";
 import { useState } from "react";
 import styles from "styles/admin/modules/AdminProject.module.css";
@@ -9,7 +8,7 @@ import { API_ACTIONS } from "config";
 
 
 const AdminProject = (props) => {
-    const { reqData, companyData, projectDataList, skillList,setUnderMnt } = props;
+    const { reqData, companyDataList, projectDataList, skillList, setUnderMnt } = props;
     const [projectData, setProjectData] = useState(projectDataList);
     const [addData, setAddData] = useState([]);
     const [newProjectSkill, setNewProjectSkill] = useState([]);
@@ -92,7 +91,7 @@ const AdminProject = (props) => {
         const data = {
             c_idx: 1,
             pro_name: "",
-            pro_position: -1,
+            pro_position: 0,
             pro_detail: "",
             pro_url: "",
             pro_start_date: "",
@@ -108,7 +107,7 @@ const AdminProject = (props) => {
 
 
     const setCompany = () => {
-        companyData.map((data, idx) => {
+        companyDataList.map((data, idx) => {
             const newCompanyData = {
                 ...companyList[idx],
                 value: data.c_idx,
@@ -121,14 +120,19 @@ const AdminProject = (props) => {
     }
 
     const editProject = async () => {
-        await appUtill.resolvePostData(API_ACTIONS.UPDATE_PROJECT, { projectData, newProjectSkill }).then((resolvedData) =>
-            setProjectData(projectData)
-        ).catch(() => {
-            setUnderMnt(true);
-        });
+        await appUtill.resolvePostData(API_ACTIONS.UPDATE_PROJECT, { projectData, newProjectSkill })
+            .catch(() => {
+                setUnderMnt(true);
+            });
         if (addData.length > 0) {
-            appUtill.resolvePostData(API_ACTIONS.INSERT_NEW_PROJECT, addData);
+            await appUtill.resolvePostData(API_ACTIONS.INSERT_NEW_PROJECT, addData);
         }
+
+        await appUtill.resolvePostData(API_ACTIONS.DELETE_PROJECT_SKILL)
+            .catch(() => {
+                setUnderMnt(true)
+            });
+
         await updateProjectData();
         setAddData([]);
         setNewProjectSkill([]);
@@ -142,7 +146,7 @@ const AdminProject = (props) => {
     useEffect(() => {
         setProjectData(projectDataList);
         setCompany();
-    }, [projectDataList])
+    }, [projectDataList, companyDataList])
 
     return (
         <div className={styles.admProjectFrame + " admProject"}>
@@ -150,43 +154,44 @@ const AdminProject = (props) => {
                 <div className="admFrameTitle">
                     Project.
                 </div>
-                <div className={styles.admProjectContent}>
-                    <AdminProjectList
-                        projectData={projectData}
-                        onChangeInput={onChangeInput}
-                        companyList={companyList}
-                        checkHandler={checkHandler}
-                        newProjectSkill={newProjectSkill}
-                        skillList={skillList}
-                        newProjectStatus
-                    />
+                {
+                    companyList.length > 0 &&
+                    <div className={styles.admProjectContent}>
+                        <AdminProjectList
+                            projectData={projectData}
+                            onChangeInput={onChangeInput}
+                            companyList={companyList}
+                            checkHandler={checkHandler}
+                            newProjectSkill={newProjectSkill}
+                            skillList={skillList}
+                            newProjectStatus
+                        />
+                        <AdminProjectList
+                            projectData={addData}
+                            onChangeInput={onChangeAddInput}
+                            companyList={companyList}
+                            checkHandler={checkHandler}
+                            newProjectSkill={newProjectSkill}
+                            skillList={skillList}
+                            newProjectStatus={false}
+                        />
 
-                    <AdminProjectList
-                        projectData={addData}
-                        onChangeInput={onChangeAddInput}
-                        companyList={companyList}
-                        checkHandler={checkHandler}
-                        newProjectSkill={newProjectSkill}
-                        skillList={skillList}
-                        newProjectStatus={false}
-                    />
-
-
-                    <div className={styles.addBtnWrap}>
-                        <button
-                            className={styles.addProjectBtn}
-                            onClick={() => addProject()}
-                        >
-                            Add Company.
-                        </button>
-                        <button
-                            className={styles.editProjectBtn}
-                            onClick={() => editProject()}
-                        >
-                            Edit Data.
-                        </button>
+                        <div className={styles.addBtnWrap}>
+                            <button
+                                className={styles.addProjectBtn}
+                                onClick={() => addProject()}
+                            >
+                                Add Project.
+                            </button>
+                            <button
+                                className={styles.editProjectBtn}
+                                onClick={() => editProject()}
+                            >
+                                Edit Data.
+                            </button>
+                        </div>
                     </div>
-                </div>
+                }
             </div>
         </div>
     );
