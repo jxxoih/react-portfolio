@@ -67,7 +67,7 @@ const AdminProjectList = (props) => {
                                     name="pro_start_date"
                                     onChange={onChangeInput}
                                     value={data.pro_start_date}
-                                    placeholder="시작일"
+                                    placeholder="시작일 ex)20230101"
                                 />
                             </li>
                             <li>
@@ -76,7 +76,7 @@ const AdminProjectList = (props) => {
                                     name="pro_end_date"
                                     onChange={onChangeInput}
                                     value={data.pro_end_date}
-                                    placeholder="종료일"
+                                    placeholder="종료일 ex)20230101"
                                 />
                             </li>
                             <li>

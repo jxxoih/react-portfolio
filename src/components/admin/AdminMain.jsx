@@ -95,7 +95,7 @@ const AdminMain = (props) => {
                     {
                         projectData && (
                             <AdminProject
-                                companyData={companyData}
+                                companyDataList={companyData}
                                 projectDataList={projectData}
                                 skillList={skillList}
                                 reqData={reqData}
