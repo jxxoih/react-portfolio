@@ -15,6 +15,7 @@ const Header = (props) => {
                         <li onClick={() => setPage(true)}>Admin.</li>
                     </>
                 )}
+                
                 {admPage && (
                     <>
                         <li onClick={() => func(4)}>About.</li>
