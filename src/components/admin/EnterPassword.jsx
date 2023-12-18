@@ -28,7 +28,7 @@ const EnterPassword = (props) => {
 
         if (checkCode === 13 || (checkCode >= 48 && checkCode <= 57) || (checkCode >= 65 && checkCode <= 90) || (checkCode >= 96 && checkCode <= 107)) {
             if (e.key === "Enter") {
-                if (pwd === "exit") {
+                if (pwd === "exit" || pwd === "ㄷㅌㅑㅅ") {
                     setAdmin(false);
                     setPage(false);
                 } else {
