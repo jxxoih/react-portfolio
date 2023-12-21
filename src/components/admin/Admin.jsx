@@ -3,7 +3,7 @@ import EnterPassword from "components/admin/EnterPassword";
 import AdminMain from "components/admin/AdminMain";
 
 const Admin = (props) => {
-    const { isAdmin, isMobile, setAdmin, setPage ,setUnderMnt} = props;
+    const { isAdmin, isMobile, setAdmin, setPage ,setUnderMnt, queryClient} = props;
 
     return (
         <>
@@ -11,6 +11,7 @@ const Admin = (props) => {
                 <AdminMain
                     isMobile={isMobile}
                     setUnderMnt={setUnderMnt}
+                    queryClient={queryClient}
                 />
             )}
             {!isAdmin && (
