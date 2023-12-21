@@ -6,9 +6,10 @@ import * as appUtill from "utills/appUtill";
 import CustomSelect from "components/commons/CustomSelect";
 import { useEffect } from "react";
 import { API_ACTIONS } from "config";
+import { useMutation } from "react-query";
 
 const AdminCompany = (props) => {
-    const { reqData, companyDataList, setUnderMnt } = props;
+    const { companyDataList, queryClient } = props;
     const [companyData, setCompanyData] = useState(companyDataList)
     const [addData, setAddData] = useState([]);
 
@@ -61,31 +62,31 @@ const AdminCompany = (props) => {
         setAddData([...addData, data]);
     }
 
-    const editCompany = () => {
-        appUtill.resolvePostData(API_ACTIONS.UPDATE_COMPANY, companyData).then((resolvedData) =>
-            updateCompanyData()
-        ).catch(() => {
-            setUnderMnt(true);
-        });
+    const editCompany = async () => {
+        await appUtill.resolvePostData(API_ACTIONS.UPDATE_COMPANY, companyData);
 
         if (addData.length > 0) {
-            appUtill.resolvePostData(API_ACTIONS.INSERT_NEW_COMPANY, addData).then((resolvedData) =>
-                updateCompanyData()
-            ).catch(() => {
-                setUnderMnt(true);
-            });
+            await appUtill.resolvePostData(API_ACTIONS.INSERT_NEW_COMPANY, addData);
         }
+
+        updateCompanyData();
     }
 
     const updateCompanyData = () => {
-        // TODO::현재 페이지 변경시 reqData로 모든 데이터 최신화됨 추후 수정 필요
-        reqData(1);
+        queryClient.invalidateQueries({ queryKey: ['admCompany'] });
+        queryClient.invalidateQueries({ queryKey: ['company'] });
         setAddData([]);
     }
 
     useEffect(() => {
         setCompanyData(companyDataList);
-    }, [companyDataList])
+    }, [companyDataList]);
+
+    const { mutate } = useMutation(() => editCompany(), {
+        onSuccess: () => {
+            updateCompanyData();
+        }
+    })
 
     return (
         <div className={styles.admCompanyFrame + " admCompany"}>
@@ -214,7 +215,7 @@ const AdminCompany = (props) => {
                         </button>
                         <button
                             className={styles.editCompanyBtn}
-                            onClick={() => editCompany()}
+                            onClick={() => mutate()}
                         >
                             Edit Data.
                         </button>

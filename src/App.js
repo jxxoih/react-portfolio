@@ -16,14 +16,19 @@ import {
   IMG_PATH,
   API_ACTIONS,
   ADMIN_KEY_NAME,
-  ROOT_PATH
+  ROOT_PATH,
+  STALE_TIME,
+  CACHE_TIME
 } from "config";
 import * as appUtill from "utills/appUtill";
 import Admin from "components/admin/Admin";
 import LoadingPage from "components/commons/LoadingPage";
 import InspectionPage from "components/commons/InspectionPage";
+import { useQueries, useQueryClient } from "react-query";
 
 function App() {
+  const queryClient = useQueryClient();
+
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [underMnt, setUnderMnt] = useState(false);
@@ -54,36 +59,44 @@ function App() {
     });
   }
 
-  const reqData = () => {
-    appUtill.resolveGetData(API_ACTIONS.GET_ABOUT_ACTION).then((resolvedData) => {
-      setAboutData(resolvedData[0]);
-      setUnderMnt(!!!resolvedData[0].sm_state);
-    }).catch(() => {
-      setUnderMnt(true);
-    });
-    appUtill.resolveGetData(API_ACTIONS.GET_COMPANY_ACTION).then((resolvedData) => setCompany(resolvedData))
-      .catch(() => {
-        setUnderMnt(true);
-      });
-    appUtill.resolveGetData(API_ACTIONS.GET_PROJECT_ACTION).then((resolvedData) => setProject(resolvedData))
-      .catch(() => {
-        setUnderMnt(true);
-      });
-    appUtill.resolveGetData(API_ACTIONS.GET_PROJECT_GET_SKILL_ACTION).then((resolvedData) => setProjectSkill(resolvedData))
-      .catch(() => {
-        setUnderMnt(true);
-      });
-    appUtill.resolveGetData(API_ACTIONS.GET_SKILL_ACTION).then((resolvedData) => setSkillData(resolvedData))
-      .catch(() => {
-        setUnderMnt(true);
-      });
-    appUtill.resolveGetData(API_ACTIONS.GET_SKILL_FIELD_ACTION).then((resolvedData) => setFieldResult(resolvedData))
-      .catch(() => {
-        setUnderMnt(true);
-      });
-  }
-
-
+  const results = useQueries([
+    {
+      queryKey: ['about'], queryFn: () => appUtill.resolveGetData(API_ACTIONS.GET_ABOUT_ACTION), staleTime: STALE_TIME, cacheTime: CACHE_TIME,
+      onSuccess: (res) => {
+        setAboutData(res[0])
+      },
+    },
+    {
+      queryKey: ['company'], queryFn: () => appUtill.resolveGetData(API_ACTIONS.GET_COMPANY_ACTION), staleTime: STALE_TIME, cacheTime: CACHE_TIME,
+      onSuccess: (res) => {
+        setCompany(res)
+      }
+    },
+    {
+      queryKey: ['project'], queryFn: () => appUtill.resolveGetData(API_ACTIONS.GET_PROJECT_ACTION), staleTime: STALE_TIME, cacheTime: CACHE_TIME,
+      onSuccess: (res) => {
+        setProject(res)
+      }
+    },
+    {
+      queryKey: ['projectSkill'], queryFn: () => appUtill.resolveGetData(API_ACTIONS.GET_PROJECT_GET_SKILL_ACTION), staleTime: STALE_TIME, cacheTime: CACHE_TIME,
+      onSuccess: (res) => {
+        setProjectSkill(res)
+      }
+    },
+    {
+      queryKey: ['skill'], queryFn: () => appUtill.resolveGetData(API_ACTIONS.GET_SKILL_ACTION), staleTime: STALE_TIME, cacheTime: CACHE_TIME,
+      onSuccess: (res) => {
+        setSkillData(res)
+      }
+    },
+    {
+      queryKey: ['skillField'], queryFn: () => appUtill.resolveGetData(API_ACTIONS.GET_SKILL_FIELD_ACTION), staleTime: STALE_TIME, cacheTime: CACHE_TIME,
+      onSuccess: (res) => {
+        setFieldResult(res)
+      }
+    },
+  ]);
 
   const setAdminAuthrizeExpireTime = () => {
     const keyName = ADMIN_KEY_NAME;
@@ -142,7 +155,6 @@ function App() {
     }
 
     scrollToY(0);
-    reqData();
   }
 
   const setAdminAuthrize = (status) => {
@@ -155,7 +167,6 @@ function App() {
   useEffect(() => {
     setIsAdmin(getAdminAuthrizeExpireTime());
     // getData
-    reqData();
 
     function handleResize() {
       let width = window.innerWidth;
@@ -228,6 +239,7 @@ function App() {
                         setAdmin={setAdminAuthrize}
                         setPage={setPage}
                         setUnderMnt={setUnderMnt}
+                        queryClient={queryClient}
                       />
                     }
                   >

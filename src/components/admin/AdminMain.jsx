@@ -5,66 +5,61 @@ import { useEffect } from "react";
 import { useState } from "react";
 
 import * as appUtill from "utills/appUtill";
-import { API_ACTIONS } from "config";
+import { API_ACTIONS, STALE_TIME, CACHE_TIME } from "config";
 import LoadingPage from "components/commons/LoadingPage";
+import { useQueries } from "react-query";
 
 const AdminMain = (props) => {
-    const { isMobile, setUnderMnt } = props;
+    const { isMobile, setUnderMnt, queryClient } = props;
     const [companyData, setCompanyData] = useState([]);
     const [projectData, setProjectData] = useState([]);
     const [skillList, setSkillList] = useState([]);
     const [aboutData, setAboutData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
-    const reqData = async (arg) => {
-        if (arg === 0) {
-            await appUtill.resolveGetData(API_ACTIONS.GET_ABOUT_ACTION).then((resolvedData) =>
-                setAboutData(resolvedData[0])
-            ).catch(() => {
-                setUnderMnt(true);
-            });
-        } else if (arg === 1) {
-            await appUtill.resolveGetData(API_ACTIONS.GET_ADMIN_COMPANY_ACTION).then((resolvedData) =>
-                setCompanyData(resolvedData)
-            ).catch(() => {
-                setUnderMnt(true);
-            });
-        } else if (arg === 2) {
-            await appUtill.resolveGetData(API_ACTIONS.GET_ADMIN_PROJECT_ACTION).then((resolvedData) =>
-                setProjectData(resolvedData)
-            ).catch(() => {
-                setUnderMnt(true);
-            });
-        } else {
-            await appUtill.resolveGetData(API_ACTIONS.GET_ABOUT_ACTION).then((resolvedData) =>
-                setAboutData(resolvedData[0])
-            ).catch(() => {
-                setUnderMnt(true);
-            });
-            await appUtill.resolveGetData(API_ACTIONS.GET_ADMIN_COMPANY_ACTION).then((resolvedData) =>
-                setCompanyData(resolvedData)
-            ).catch(() => {
-                setUnderMnt(true);
-            });
-            await appUtill.resolveGetData(API_ACTIONS.GET_ADMIN_PROJECT_ACTION).then((resolvedData) =>
-                setProjectData(resolvedData)
-            ).catch(() => {
-                setUnderMnt(true);
-            });
-            await appUtill.resolveGetData(API_ACTIONS.GET_SKILL_LIST).then((resolvedData) =>
-                setSkillList(resolvedData)
-            ).catch(() => {
-                setUnderMnt(true);
-            });
-        }
-
-        setIsLoading(false);
-    }
-
+    const results = useQueries([
+        {
+            queryKey: ['about'],
+            queryFn: () => appUtill.resolveGetData(API_ACTIONS.GET_ABOUT_ACTION),
+            taleTime: STALE_TIME,
+            cacheTime: CACHE_TIME,
+            onSuccess: (res) => {
+                setAboutData(res[0])
+            }
+        },
+        {
+            queryKey: ['admCompany'],
+            queryFn: () => appUtill.resolveGetData(API_ACTIONS.GET_ADMIN_COMPANY_ACTION),
+            taleTime: STALE_TIME,
+            cacheTime: CACHE_TIME,
+            onSuccess: (res) => {
+                setCompanyData(res)
+            }
+        },
+        {
+            queryKey: ['admProject'],
+            queryFn: () => appUtill.resolveGetData(API_ACTIONS.GET_ADMIN_PROJECT_ACTION),
+            taleTime: STALE_TIME,
+            cacheTime: CACHE_TIME,
+            onSuccess: (res) => {
+                setProjectData(res)
+            }
+        },
+        {
+            queryKey: ['skillList'],
+            queryFn: () => appUtill.resolveGetData(API_ACTIONS.GET_SKILL_LIST),
+            taleTime: STALE_TIME,
+            cacheTime: CACHE_TIME,
+            onSuccess: (res) => {
+                setSkillList(res)
+            }
+        },
+    ])
+ 
     useEffect(() => {
-        setIsLoading(true);
-        reqData();
-    }, []);
+        const loadingFinishAll = results.some(results => results.isLoading);
+        setIsLoading(loadingFinishAll);
+    }, [results]);
 
     return (
         <div className="adminFrame">
@@ -78,8 +73,8 @@ const AdminMain = (props) => {
                             <AdminAbout
                                 isMobile={isMobile}
                                 aboutDataList={aboutData}
-                                reqData={reqData}
                                 setUnderMnt={setUnderMnt}
+                                queryClient={queryClient}
                             />
                         )
                     }
@@ -87,8 +82,8 @@ const AdminMain = (props) => {
                         companyData && (
                             <AdminCompany
                                 companyDataList={companyData}
-                                reqData={reqData}
                                 setUnderMnt={setUnderMnt}
+                                queryClient={queryClient}
                             />
                         )
                     }
@@ -98,8 +93,8 @@ const AdminMain = (props) => {
                                 companyDataList={companyData}
                                 projectDataList={projectData}
                                 skillList={skillList}
-                                reqData={reqData}
                                 setUnderMnt={setUnderMnt}
+                                queryClient={queryClient}
                             />
                         )
                     }

@@ -4,9 +4,10 @@ import styles from "styles/admin/modules/AdminAbout.module.css";
 
 import * as appUtill from "utills/appUtill";
 import { API_ACTIONS } from "config";
+import { useMutation } from "react-query";
 
 const AdminAbout = (props) => {
-    const { reqData, aboutDataList, setUnderMnt } = props;
+    const { aboutDataList, setUnderMnt, queryClient } = props;
 
     const [aboutData, setAboutData] = useState(aboutDataList);
     const [oriData, setOriData] = useState(aboutDataList);
@@ -29,20 +30,25 @@ const AdminAbout = (props) => {
         }
     }
 
+    const aboutUpdate = async () => {
+        await appUtill.resolvePostData(API_ACTIONS.UPDATE_ABOUT, aboutData);
+    }
+
     const updateAbout = async () => {
         if (aboutChgStat) {
-            await appUtill.resolvePostData(API_ACTIONS.UPDATE_ABOUT, aboutData).then((resolvedData) => {
-                setOriData(aboutData)
-            }).catch(() => {
-                setUnderMnt(true);
-            });
+            mutate();
         } else {
             return;
         }
 
         setAboutChgStat(false);
-        await reqData(0);
     }
+
+    const { mutate } = useMutation(() => aboutUpdate(), {
+        onSuccess: () => {
+            queryClient.invalidateQueries({queryKey: ['about']})
+        }
+    });
 
     useEffect(() => {
         setOriData(aboutDataList);

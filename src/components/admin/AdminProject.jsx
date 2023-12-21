@@ -5,10 +5,11 @@ import styles from "styles/admin/modules/AdminProject.module.css";
 import * as appUtill from "utills/appUtill";
 import AdminProjectList from "components/admin/AdminProjectList";
 import { API_ACTIONS } from "config";
+import { useMutation } from "react-query";
 
 
 const AdminProject = (props) => {
-    const { reqData, companyDataList, projectDataList, skillList, setUnderMnt } = props;
+    const { companyDataList, projectDataList, skillList, setUnderMnt, queryClient } = props;
     const [projectData, setProjectData] = useState(projectDataList);
     const [addData, setAddData] = useState([]);
     const [newProjectSkill, setNewProjectSkill] = useState([]);
@@ -120,33 +121,35 @@ const AdminProject = (props) => {
     }
 
     const editProject = async () => {
-        await appUtill.resolvePostData(API_ACTIONS.UPDATE_PROJECT, { projectData, newProjectSkill })
-            .catch(() => {
-                setUnderMnt(true);
-            });
+        await appUtill.resolvePostData(API_ACTIONS.UPDATE_PROJECT, { projectData, newProjectSkill });
+
         if (addData.length > 0) {
             await appUtill.resolvePostData(API_ACTIONS.INSERT_NEW_PROJECT, addData);
         }
 
-        await appUtill.resolvePostData(API_ACTIONS.DELETE_PROJECT_SKILL)
-            .catch(() => {
-                setUnderMnt(true)
-            });
-
-        await updateProjectData();
-        setAddData([]);
-        setNewProjectSkill([]);
+        await appUtill.resolvePostData(API_ACTIONS.DELETE_PROJECT_SKILL);
     }
 
     const updateProjectData = () => {
-        // TODO::현재 페이지 변경시 reqData로 모든 데이터 최신화됨 추후 수정 필요
-        reqData(2);
+        queryClient.invalidateQueries({ queryKey: ['admProject'] });
+        queryClient.invalidateQueries({ queryKey: ['project'] });
+        queryClient.invalidateQueries({ queryKey: ['skill'] });
+        queryClient.invalidateQueries({ queryKey: ['skillField'] });
+
+        setAddData([]);
+        setNewProjectSkill([]);
     }
 
     useEffect(() => {
         setProjectData(projectDataList);
         setCompany();
-    }, [projectDataList, companyDataList])
+    }, [projectDataList, companyDataList]);
+
+    const { mutate } = useMutation(() => editProject(), {
+        onSuccess: () => {
+            updateProjectData();
+        }
+    })
 
     return (
         <div className={styles.admProjectFrame + " admProject"}>
@@ -185,7 +188,7 @@ const AdminProject = (props) => {
                             </button>
                             <button
                                 className={styles.editProjectBtn}
-                                onClick={() => editProject()}
+                                onClick={() => mutate()}
                             >
                                 Edit Data.
                             </button>
