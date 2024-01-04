@@ -63,36 +63,66 @@ function App() {
     {
       queryKey: ['about'], queryFn: () => appUtill.resolveGetData(API_ACTIONS.GET_ABOUT_ACTION), staleTime: STALE_TIME, cacheTime: CACHE_TIME,
       onSuccess: (res) => {
+        if(!!!res) {
+          setUnderMnt(true)
+        } else {
+          setUnderMnt(false)
+        }
         setAboutData(res[0])
       },
     },
     {
       queryKey: ['company'], queryFn: () => appUtill.resolveGetData(API_ACTIONS.GET_COMPANY_ACTION), staleTime: STALE_TIME, cacheTime: CACHE_TIME,
       onSuccess: (res) => {
+        if(!!!res) {
+          setUnderMnt(true)
+        } else {
+          setUnderMnt(false)
+        }
         setCompany(res)
       }
     },
     {
       queryKey: ['project'], queryFn: () => appUtill.resolveGetData(API_ACTIONS.GET_PROJECT_ACTION), staleTime: STALE_TIME, cacheTime: CACHE_TIME,
       onSuccess: (res) => {
+        if(!!!res) {
+          setUnderMnt(true)
+        } else {
+          setUnderMnt(false)
+        }
         setProject(res)
       }
     },
     {
       queryKey: ['projectSkill'], queryFn: () => appUtill.resolveGetData(API_ACTIONS.GET_PROJECT_GET_SKILL_ACTION), staleTime: STALE_TIME, cacheTime: CACHE_TIME,
       onSuccess: (res) => {
+        if(!!!res) {
+          setUnderMnt(true)
+        } else {
+          setUnderMnt(false)
+        }
         setProjectSkill(res)
       }
     },
     {
       queryKey: ['skill'], queryFn: () => appUtill.resolveGetData(API_ACTIONS.GET_SKILL_ACTION), staleTime: STALE_TIME, cacheTime: CACHE_TIME,
       onSuccess: (res) => {
+        if(!!!res) {
+          setUnderMnt(true)
+        } else {
+          setUnderMnt(false)
+        }
         setSkillData(res)
       }
     },
     {
       queryKey: ['skillField'], queryFn: () => appUtill.resolveGetData(API_ACTIONS.GET_SKILL_FIELD_ACTION), staleTime: STALE_TIME, cacheTime: CACHE_TIME,
       onSuccess: (res) => {
+        if(!!!res) {
+          setUnderMnt(true)
+        } else {
+          setUnderMnt(false)
+        }
         setFieldResult(res)
       }
     },
