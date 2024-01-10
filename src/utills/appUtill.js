@@ -28,7 +28,9 @@ export const reqGET = async (action, arg) => {
     }
 
     return await axios.get(API_GET_PATH, data)
-        .then((res) => res.data.data)
+        .then((res) => 
+            res.data
+        )
         .catch((err) => console.log("err", err))
 }
 
