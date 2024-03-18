@@ -16,5 +16,11 @@
 .typer {
     color: #ededed;
     font-weight: 600;
-    font-size: 5vw;
+    font-size: 3em;
+}
+
+@media screen and (max-width: 768px) {
+    .typer {
+        font-size: 5vw;
+    }
 }
