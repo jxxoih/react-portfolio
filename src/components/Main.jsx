@@ -3,6 +3,7 @@ import styles from "styles/modules/Main.module.css";
 import About from "components/About.jsx";
 import Work from "components/Work";
 import Skill from "components/Skill";
+// import SkillMobile from "components/SkillMobile";
 import Contact from "components/Contact";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -62,7 +63,14 @@ const Main = (props) => {
                 isMobile={isMobile}
                 skillDataList={skillData}
             />
+            {/* <SkillMobile
+                func={returnUrl}
+                isMobile={isMobile}
+                skillDataList={skillData}
+            /> */}
             <Contact
+                func={returnUrl}
+                github={aboutData?.p_github}
                 email={aboutData?.p_email}
             />
         </div>
