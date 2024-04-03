@@ -5,9 +5,10 @@ import styles from "styles/modules/Contact.module.css";
 
 
 const emailImg = IMG_PATH + "email.png";
+const githubImg = IMG_PATH + "github-full.png";
 
 const Contact = (props) => {
-    const { email } = props;
+    const { email, github, func } = props;
 
     return (
         <div className={styles.contactWrap + " contact"}>
@@ -16,12 +17,21 @@ const Contact = (props) => {
                     Contact.
                 </p>
             </div>
-            <div className={styles.contactContent}>
-                <img src={emailImg} alt="email-img" className={styles.emailImg} />
-                <p className={styles.emailText}>Email.</p>
-                <p className={styles.email}>
-                    {email}
-                </p>
+            <div className={styles.contactContentWrap}>
+                <div className={styles.contactContent}>
+                    <img src={emailImg} alt="email-img" className={styles.contentImg} />
+                    <span className={styles.contentText}>Email.</span>
+                    <span className={styles.content}>
+                        {email}
+                    </span>
+                </div>
+                <div className={styles.contactContent}>
+                    <img
+                        src={githubImg} alt="github-img"
+                        className={styles.githubImg}
+                        onClick={(e) => func(`https://github.com/${github}`, e)}
+                    />
+                </div>
             </div>
         </div>
     );

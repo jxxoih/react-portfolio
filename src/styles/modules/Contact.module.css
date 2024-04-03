@@ -13,26 +13,34 @@
     padding: 32px;
 }
 
+.contactContentWrap {
+    padding: 0 0 50px 0;
+}
+
 .contactContent {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 0 50px 0;
 }
 
-.emailImg {
+.contentImg {
     height: 40px;
 }
 
-.emailText {
+.githubImg {
+    height: 60px;
+    cursor: pointer;
+}
+
+.contentText {
     font-size: 1.3rem;
     font-weight: 600;
     padding: 0 10px;
     color: #595959;
 }
 
-.email {
+.content {
     font-size: 1rem;
     font-weight: 600;
     padding: 0 20px;
