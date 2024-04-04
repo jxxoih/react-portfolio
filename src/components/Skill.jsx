@@ -13,12 +13,12 @@ const Skill = (props) => {
                     Skills.
                 </p>
             </div>
-            <div className={isMobile ? styles.skillMobileContent : styles.skillContent}>
+            <div className={styles.skillContent}>
                 {!!fieldResult &&
                     fieldResult.map((field, fidx) => (
                         <div className={styles.skillList} key={fidx}>
-                            <div className={isMobile ? styles.skillMobileBox : styles.skillBox}>
-                                <p className={isMobile ? styles.stackTitleMobile : styles.stackTitle}>{field.sf_name}</p>
+                            <div className={styles.skillBox}>
+                                <p className={styles.stackTitle}>{field.sf_name}</p>
                                 <ul>
                                     {!!skillData &&
                                         skillData.map((data) => (
